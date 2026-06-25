@@ -1,0 +1,460 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\IT\\C#\\TourBooking\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{28521F71-BB00-4879-B3BC-8840D6EFE794}|TourBooking\\TourBooking.csproj|c:\\it\\c#\\tourbooking\\tourbooking\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{28521F71-BB00-4879-B3BC-8840D6EFE794}|TourBooking\\TourBooking.csproj|solutionrelative:tourbooking\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{28521F71-BB00-4879-B3BC-8840D6EFE794}|TourBooking\\TourBooking.csproj|c:\\it\\c#\\tourbooking\\tourbooking\\data\\repositories\\tourrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{28521F71-BB00-4879-B3BC-8840D6EFE794}|TourBooking\\TourBooking.csproj|solutionrelative:tourbooking\\data\\repositories\\tourrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{28521F71-BB00-4879-B3BC-8840D6EFE794}|TourBooking\\TourBooking.csproj|c:\\it\\c#\\tourbooking\\tourbooking\\data\\repositories\\bookingrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{28521F71-BB00-4879-B3BC-8840D6EFE794}|TourBooking\\TourBooking.csproj|solutionrelative:tourbooking\\data\\repositories\\bookingrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{28521F71-BB00-4879-B3BC-8840D6EFE794}|TourBooking\\TourBooking.csproj|c:\\it\\c#\\tourbooking\\tourbooking\\data\\migrations\\configuration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{28521F71-BB00-4879-B3BC-8840D6EFE794}|TourBooking\\TourBooking.csproj|solutionrelative:tourbooking\\data\\migrations\\configuration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{28521F71-BB00-4879-B3BC-8840D6EFE794}|TourBooking\\TourBooking.csproj|c:\\it\\c#\\tourbooking\\tourbooking\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{28521F71-BB00-4879-B3BC-8840D6EFE794}|TourBooking\\TourBooking.csproj|solutionrelative:tourbooking\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{28521F71-BB00-4879-B3BC-8840D6EFE794}|TourBooking\\TourBooking.csproj|c:\\it\\c#\\tourbooking\\tourbooking\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{28521F71-BB00-4879-B3BC-8840D6EFE794}|TourBooking\\TourBooking.csproj|solutionrelative:tourbooking\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{28521F71-BB00-4879-B3BC-8840D6EFE794}|TourBooking\\TourBooking.csproj|c:\\it\\c#\\tourbooking\\tourbooking\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{28521F71-BB00-4879-B3BC-8840D6EFE794}|TourBooking\\TourBooking.csproj|solutionrelative:tourbooking\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{28521F71-BB00-4879-B3BC-8840D6EFE794}|TourBooking\\TourBooking.csproj|c:\\it\\c#\\tourbooking\\tourbooking\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{28521F71-BB00-4879-B3BC-8840D6EFE794}|TourBooking\\TourBooking.csproj|solutionrelative:tourbooking\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{28521F71-BB00-4879-B3BC-8840D6EFE794}|TourBooking\\TourBooking.csproj|c:\\it\\c#\\tourbooking\\tourbooking\\models\\tour.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{28521F71-BB00-4879-B3BC-8840D6EFE794}|TourBooking\\TourBooking.csproj|solutionrelative:tourbooking\\models\\tour.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{28521F71-BB00-4879-B3BC-8840D6EFE794}|TourBooking\\TourBooking.csproj|c:\\it\\c#\\tourbooking\\tourbooking\\models\\staff.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{28521F71-BB00-4879-B3BC-8840D6EFE794}|TourBooking\\TourBooking.csproj|solutionrelative:tourbooking\\models\\staff.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{28521F71-BB00-4879-B3BC-8840D6EFE794}|TourBooking\\TourBooking.csproj|c:\\it\\c#\\tourbooking\\tourbooking\\models\\payment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{28521F71-BB00-4879-B3BC-8840D6EFE794}|TourBooking\\TourBooking.csproj|solutionrelative:tourbooking\\models\\payment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{28521F71-BB00-4879-B3BC-8840D6EFE794}|TourBooking\\TourBooking.csproj|c:\\it\\c#\\tourbooking\\tourbooking\\models\\enums.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{28521F71-BB00-4879-B3BC-8840D6EFE794}|TourBooking\\TourBooking.csproj|solutionrelative:tourbooking\\models\\enums.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{28521F71-BB00-4879-B3BC-8840D6EFE794}|TourBooking\\TourBooking.csproj|c:\\it\\c#\\tourbooking\\tourbooking\\models\\customer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{28521F71-BB00-4879-B3BC-8840D6EFE794}|TourBooking\\TourBooking.csproj|solutionrelative:tourbooking\\models\\customer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{28521F71-BB00-4879-B3BC-8840D6EFE794}|TourBooking\\TourBooking.csproj|c:\\it\\c#\\tourbooking\\tourbooking\\models\\bookingdetail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{28521F71-BB00-4879-B3BC-8840D6EFE794}|TourBooking\\TourBooking.csproj|solutionrelative:tourbooking\\models\\bookingdetail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{28521F71-BB00-4879-B3BC-8840D6EFE794}|TourBooking\\TourBooking.csproj|c:\\it\\c#\\tourbooking\\tourbooking\\models\\booking.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{28521F71-BB00-4879-B3BC-8840D6EFE794}|TourBooking\\TourBooking.csproj|solutionrelative:tourbooking\\models\\booking.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{28521F71-BB00-4879-B3BC-8840D6EFE794}|TourBooking\\TourBooking.csproj|c:\\it\\c#\\tourbooking\\tourbooking\\data\\interfaces\\ibookingrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{28521F71-BB00-4879-B3BC-8840D6EFE794}|TourBooking\\TourBooking.csproj|solutionrelative:tourbooking\\data\\interfaces\\ibookingrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{28521F71-BB00-4879-B3BC-8840D6EFE794}|TourBooking\\TourBooking.csproj|c:\\it\\c#\\tourbooking\\tourbooking\\data\\repositories\\customerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{28521F71-BB00-4879-B3BC-8840D6EFE794}|TourBooking\\TourBooking.csproj|solutionrelative:tourbooking\\data\\repositories\\customerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{28521F71-BB00-4879-B3BC-8840D6EFE794}|TourBooking\\TourBooking.csproj|c:\\it\\c#\\tourbooking\\tourbooking\\data\\interfaces\\icustomerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{28521F71-BB00-4879-B3BC-8840D6EFE794}|TourBooking\\TourBooking.csproj|solutionrelative:tourbooking\\data\\interfaces\\icustomerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{28521F71-BB00-4879-B3BC-8840D6EFE794}|TourBooking\\TourBooking.csproj|c:\\it\\c#\\tourbooking\\tourbooking\\data\\repositories\\staffrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{28521F71-BB00-4879-B3BC-8840D6EFE794}|TourBooking\\TourBooking.csproj|solutionrelative:tourbooking\\data\\repositories\\staffrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{28521F71-BB00-4879-B3BC-8840D6EFE794}|TourBooking\\TourBooking.csproj|c:\\it\\c#\\tourbooking\\tourbooking\\data\\interfaces\\istaffrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{28521F71-BB00-4879-B3BC-8840D6EFE794}|TourBooking\\TourBooking.csproj|solutionrelative:tourbooking\\data\\interfaces\\istaffrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{28521F71-BB00-4879-B3BC-8840D6EFE794}|TourBooking\\TourBooking.csproj|c:\\it\\c#\\tourbooking\\tourbooking\\data\\interfaces\\itourrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{28521F71-BB00-4879-B3BC-8840D6EFE794}|TourBooking\\TourBooking.csproj|solutionrelative:tourbooking\\data\\interfaces\\itourrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{28521F71-BB00-4879-B3BC-8840D6EFE794}|TourBooking\\TourBooking.csproj|c:\\it\\c#\\tourbooking\\tourbooking\\data\\repositories\\genericrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{28521F71-BB00-4879-B3BC-8840D6EFE794}|TourBooking\\TourBooking.csproj|solutionrelative:tourbooking\\data\\repositories\\genericrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{28521F71-BB00-4879-B3BC-8840D6EFE794}|TourBooking\\TourBooking.csproj|c:\\it\\c#\\tourbooking\\tourbooking\\data\\interfaces\\igenericrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{28521F71-BB00-4879-B3BC-8840D6EFE794}|TourBooking\\TourBooking.csproj|solutionrelative:tourbooking\\data\\interfaces\\igenericrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{28521F71-BB00-4879-B3BC-8840D6EFE794}|TourBooking\\TourBooking.csproj|c:\\it\\c#\\tourbooking\\tourbooking\\data\\migrations\\202606252033259_initialcreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{28521F71-BB00-4879-B3BC-8840D6EFE794}|TourBooking\\TourBooking.csproj|solutionrelative:tourbooking\\data\\migrations\\202606252033259_initialcreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{28521F71-BB00-4879-B3BC-8840D6EFE794}|TourBooking\\TourBooking.csproj|c:\\it\\c#\\tourbooking\\tourbooking\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{28521F71-BB00-4879-B3BC-8840D6EFE794}|TourBooking\\TourBooking.csproj|solutionrelative:tourbooking\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{28521F71-BB00-4879-B3BC-8840D6EFE794}|TourBooking\\TourBooking.csproj|c:\\it\\c#\\tourbooking\\tourbooking\\packages.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{28521F71-BB00-4879-B3BC-8840D6EFE794}|TourBooking\\TourBooking.csproj|solutionrelative:tourbooking\\packages.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 6,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "App.xaml",
+              "DocumentMoniker": "C:\\IT\\C#\\TourBooking\\TourBooking\\App.xaml",
+              "RelativeDocumentMoniker": "TourBooking\\App.xaml",
+              "ToolTip": "C:\\IT\\C#\\TourBooking\\TourBooking\\App.xaml",
+              "RelativeToolTip": "TourBooking\\App.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-06-25T19:42:48.575Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "C:\\IT\\C#\\TourBooking\\TourBooking\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "TourBooking\\MainWindow.xaml",
+              "ToolTip": "C:\\IT\\C#\\TourBooking\\TourBooking\\MainWindow.xaml",
+              "RelativeToolTip": "TourBooking\\MainWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-06-25T19:30:03.937Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "MainWindow.xaml.cs",
+              "DocumentMoniker": "C:\\IT\\C#\\TourBooking\\TourBooking\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "TourBooking\\MainWindow.xaml.cs",
+              "ToolTip": "C:\\IT\\C#\\TourBooking\\TourBooking\\MainWindow.xaml.cs",
+              "RelativeToolTip": "TourBooking\\MainWindow.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-25T19:30:02.249Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Configuration.cs",
+              "DocumentMoniker": "C:\\IT\\C#\\TourBooking\\TourBooking\\Data\\Migrations\\Configuration.cs",
+              "RelativeDocumentMoniker": "TourBooking\\Data\\Migrations\\Configuration.cs",
+              "ToolTip": "C:\\IT\\C#\\TourBooking\\TourBooking\\Data\\Migrations\\Configuration.cs*",
+              "RelativeToolTip": "TourBooking\\Data\\Migrations\\Configuration.cs*",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAkwBwAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-25T20:32:55.861Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "BookingRepository.cs",
+              "DocumentMoniker": "C:\\IT\\C#\\TourBooking\\TourBooking\\Data\\Repositories\\BookingRepository.cs",
+              "RelativeDocumentMoniker": "TourBooking\\Data\\Repositories\\BookingRepository.cs",
+              "ToolTip": "C:\\IT\\C#\\TourBooking\\TourBooking\\Data\\Repositories\\BookingRepository.cs",
+              "RelativeToolTip": "TourBooking\\Data\\Repositories\\BookingRepository.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAA3wCkAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-25T20:42:19.477Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "TourRepository.cs",
+              "DocumentMoniker": "C:\\IT\\C#\\TourBooking\\TourBooking\\Data\\Repositories\\TourRepository.cs",
+              "RelativeDocumentMoniker": "TourBooking\\Data\\Repositories\\TourRepository.cs",
+              "ToolTip": "C:\\IT\\C#\\TourBooking\\TourBooking\\Data\\Repositories\\TourRepository.cs",
+              "RelativeToolTip": "TourBooking\\Data\\Repositories\\TourRepository.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAAkwDAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-25T20:39:30.075Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "C:\\IT\\C#\\TourBooking\\TourBooking\\Data\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "TourBooking\\Data\\AppDbContext.cs",
+              "ToolTip": "C:\\IT\\C#\\TourBooking\\TourBooking\\Data\\AppDbContext.cs",
+              "RelativeToolTip": "TourBooking\\Data\\AppDbContext.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAAAYwDQAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-25T20:14:41.702Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "App.xaml.cs",
+              "DocumentMoniker": "C:\\IT\\C#\\TourBooking\\TourBooking\\App.xaml.cs",
+              "RelativeDocumentMoniker": "TourBooking\\App.xaml.cs",
+              "ToolTip": "C:\\IT\\C#\\TourBooking\\TourBooking\\App.xaml.cs",
+              "RelativeToolTip": "TourBooking\\App.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-25T19:42:56.51Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Tour.cs",
+              "DocumentMoniker": "C:\\IT\\C#\\TourBooking\\TourBooking\\Models\\Tour.cs",
+              "RelativeDocumentMoniker": "TourBooking\\Models\\Tour.cs",
+              "ToolTip": "C:\\IT\\C#\\TourBooking\\TourBooking\\Models\\Tour.cs",
+              "RelativeToolTip": "TourBooking\\Models\\Tour.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAowB4AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-25T20:12:58.869Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Staff.cs",
+              "DocumentMoniker": "C:\\IT\\C#\\TourBooking\\TourBooking\\Models\\Staff.cs",
+              "RelativeDocumentMoniker": "TourBooking\\Models\\Staff.cs",
+              "ToolTip": "C:\\IT\\C#\\TourBooking\\TourBooking\\Models\\Staff.cs",
+              "RelativeToolTip": "TourBooking\\Models\\Staff.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAA0wBsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-25T20:13:36.213Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Payment.cs",
+              "DocumentMoniker": "C:\\IT\\C#\\TourBooking\\TourBooking\\Models\\Payment.cs",
+              "RelativeDocumentMoniker": "TourBooking\\Models\\Payment.cs",
+              "ToolTip": "C:\\IT\\C#\\TourBooking\\TourBooking\\Models\\Payment.cs",
+              "RelativeToolTip": "TourBooking\\Models\\Payment.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-25T20:14:23.566Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Enums.cs",
+              "DocumentMoniker": "C:\\IT\\C#\\TourBooking\\TourBooking\\Models\\Enums.cs",
+              "RelativeDocumentMoniker": "TourBooking\\Models\\Enums.cs",
+              "ToolTip": "C:\\IT\\C#\\TourBooking\\TourBooking\\Models\\Enums.cs",
+              "RelativeToolTip": "TourBooking\\Models\\Enums.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-25T20:12:32.444Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Customer.cs",
+              "DocumentMoniker": "C:\\IT\\C#\\TourBooking\\TourBooking\\Models\\Customer.cs",
+              "RelativeDocumentMoniker": "TourBooking\\Models\\Customer.cs",
+              "ToolTip": "C:\\IT\\C#\\TourBooking\\TourBooking\\Models\\Customer.cs",
+              "RelativeToolTip": "TourBooking\\Models\\Customer.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAQwBoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-25T20:13:14.75Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "BookingDetail.cs",
+              "DocumentMoniker": "C:\\IT\\C#\\TourBooking\\TourBooking\\Models\\BookingDetail.cs",
+              "RelativeDocumentMoniker": "TourBooking\\Models\\BookingDetail.cs",
+              "ToolTip": "C:\\IT\\C#\\TourBooking\\TourBooking\\Models\\BookingDetail.cs",
+              "RelativeToolTip": "TourBooking\\Models\\BookingDetail.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-25T20:14:07.433Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Booking.cs",
+              "DocumentMoniker": "C:\\IT\\C#\\TourBooking\\TourBooking\\Models\\Booking.cs",
+              "RelativeDocumentMoniker": "TourBooking\\Models\\Booking.cs",
+              "ToolTip": "C:\\IT\\C#\\TourBooking\\TourBooking\\Models\\Booking.cs",
+              "RelativeToolTip": "TourBooking\\Models\\Booking.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACMAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-25T20:13:50.435Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "IBookingRepository.cs",
+              "DocumentMoniker": "C:\\IT\\C#\\TourBooking\\TourBooking\\Data\\Interfaces\\IBookingRepository.cs",
+              "RelativeDocumentMoniker": "TourBooking\\Data\\Interfaces\\IBookingRepository.cs",
+              "ToolTip": "C:\\IT\\C#\\TourBooking\\TourBooking\\Data\\Interfaces\\IBookingRepository.cs",
+              "RelativeToolTip": "TourBooking\\Data\\Interfaces\\IBookingRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-25T20:42:00.818Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "IStaffRepository.cs",
+              "DocumentMoniker": "C:\\IT\\C#\\TourBooking\\TourBooking\\Data\\Interfaces\\IStaffRepository.cs",
+              "RelativeDocumentMoniker": "TourBooking\\Data\\Interfaces\\IStaffRepository.cs",
+              "ToolTip": "C:\\IT\\C#\\TourBooking\\TourBooking\\Data\\Interfaces\\IStaffRepository.cs",
+              "RelativeToolTip": "TourBooking\\Data\\Interfaces\\IStaffRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-25T20:40:14.6Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "StaffRepository.cs",
+              "DocumentMoniker": "C:\\IT\\C#\\TourBooking\\TourBooking\\Data\\Repositories\\StaffRepository.cs",
+              "RelativeDocumentMoniker": "TourBooking\\Data\\Repositories\\StaffRepository.cs",
+              "ToolTip": "C:\\IT\\C#\\TourBooking\\TourBooking\\Data\\Repositories\\StaffRepository.cs",
+              "RelativeToolTip": "TourBooking\\Data\\Repositories\\StaffRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-25T20:40:30.934Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "ICustomerRepository.cs",
+              "DocumentMoniker": "C:\\IT\\C#\\TourBooking\\TourBooking\\Data\\Interfaces\\ICustomerRepository.cs",
+              "RelativeDocumentMoniker": "TourBooking\\Data\\Interfaces\\ICustomerRepository.cs",
+              "ToolTip": "C:\\IT\\C#\\TourBooking\\TourBooking\\Data\\Interfaces\\ICustomerRepository.cs",
+              "RelativeToolTip": "TourBooking\\Data\\Interfaces\\ICustomerRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-25T20:42:40.039Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "CustomerRepository.cs",
+              "DocumentMoniker": "C:\\IT\\C#\\TourBooking\\TourBooking\\Data\\Repositories\\CustomerRepository.cs",
+              "RelativeDocumentMoniker": "TourBooking\\Data\\Repositories\\CustomerRepository.cs",
+              "ToolTip": "C:\\IT\\C#\\TourBooking\\TourBooking\\Data\\Repositories\\CustomerRepository.cs",
+              "RelativeToolTip": "TourBooking\\Data\\Repositories\\CustomerRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-25T20:42:56.029Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "ITourRepository.cs",
+              "DocumentMoniker": "C:\\IT\\C#\\TourBooking\\TourBooking\\Data\\Interfaces\\ITourRepository.cs",
+              "RelativeDocumentMoniker": "TourBooking\\Data\\Interfaces\\ITourRepository.cs",
+              "ToolTip": "C:\\IT\\C#\\TourBooking\\TourBooking\\Data\\Interfaces\\ITourRepository.cs",
+              "RelativeToolTip": "TourBooking\\Data\\Interfaces\\ITourRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-25T20:39:12.392Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "GenericRepository.cs",
+              "DocumentMoniker": "C:\\IT\\C#\\TourBooking\\TourBooking\\Data\\Repositories\\GenericRepository.cs",
+              "RelativeDocumentMoniker": "TourBooking\\Data\\Repositories\\GenericRepository.cs",
+              "ToolTip": "C:\\IT\\C#\\TourBooking\\TourBooking\\Data\\Repositories\\GenericRepository.cs",
+              "RelativeToolTip": "TourBooking\\Data\\Repositories\\GenericRepository.cs",
+              "ViewState": "AgIAAEAAAAAAAAAAAAA6wEUAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-25T20:37:46.014Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "IGenericRepository.cs",
+              "DocumentMoniker": "C:\\IT\\C#\\TourBooking\\TourBooking\\Data\\Interfaces\\IGenericRepository.cs",
+              "RelativeDocumentMoniker": "TourBooking\\Data\\Interfaces\\IGenericRepository.cs",
+              "ToolTip": "C:\\IT\\C#\\TourBooking\\TourBooking\\Data\\Interfaces\\IGenericRepository.cs",
+              "RelativeToolTip": "TourBooking\\Data\\Interfaces\\IGenericRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-25T20:37:21.083Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "202606252033259_InitialCreate.cs",
+              "DocumentMoniker": "C:\\IT\\C#\\TourBooking\\TourBooking\\Data\\Migrations\\202606252033259_InitialCreate.cs",
+              "RelativeDocumentMoniker": "TourBooking\\Data\\Migrations\\202606252033259_InitialCreate.cs",
+              "ToolTip": "C:\\IT\\C#\\TourBooking\\TourBooking\\Data\\Migrations\\202606252033259_InitialCreate.cs",
+              "RelativeToolTip": "TourBooking\\Data\\Migrations\\202606252033259_InitialCreate.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-25T20:33:40.429Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "App.config",
+              "DocumentMoniker": "C:\\IT\\C#\\TourBooking\\TourBooking\\App.config",
+              "RelativeDocumentMoniker": "TourBooking\\App.config",
+              "ToolTip": "C:\\IT\\C#\\TourBooking\\TourBooking\\App.config",
+              "RelativeToolTip": "TourBooking\\App.config",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2026-06-25T19:40:59.36Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "packages.config",
+              "DocumentMoniker": "C:\\IT\\C#\\TourBooking\\TourBooking\\packages.config",
+              "RelativeDocumentMoniker": "TourBooking\\packages.config",
+              "ToolTip": "C:\\IT\\C#\\TourBooking\\TourBooking\\packages.config",
+              "RelativeToolTip": "TourBooking\\packages.config",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2026-06-25T19:39:05.376Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
