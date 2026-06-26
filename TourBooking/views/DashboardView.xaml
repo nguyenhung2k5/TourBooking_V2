@@ -1,0 +1,383 @@
+﻿<UserControl x:Class="TourBooking.Views.DashboardView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="900" d:DesignWidth="1400"
+             Background="#F4F6F9"
+             FontFamily="Segoe UI">
+
+    <UserControl.Resources>
+        <Style TargetType="Border" x:Key="CardBorder">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect BlurRadius="15" ShadowDepth="0" Color="#E2E8F0" Opacity="0.7"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="Button" x:Key="SidebarMenuButton">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Foreground" Value="#344054"/>
+            <Setter Property="Height" Value="45"/>
+            <Setter Property="Margin" Value="12,4,12,4"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="8" Padding="16,0,16,0">
+                            <ContentPresenter VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#EAECF0"/>
+                    <Setter Property="Foreground" Value="#1D3D8F"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="Button" x:Key="SidebarMenuButtonActive" BasedOn="{StaticResource SidebarMenuButton}">
+            <Setter Property="Background" Value="#2448A4"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#1D3D8F"/>
+                    <Setter Property="Foreground" Value="White"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="260"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Column="0" Background="#F8F9FA" BorderBrush="#EAECF0" BorderThickness="0,0,1,0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0" Margin="16,24,16,30">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Border Grid.Column="0" Width="40" Height="40" Background="#1D3D8F" CornerRadius="6" Margin="0,0,12,0">
+                        <Path Data="M14.4,6L14,4H5V21H7V14H12.4L12.8,16H20V6H14.4M18,14H14.2L13.8,12H7V6H12.2L12.6,8H18V14Z" Fill="White" Width="18" Height="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                        <TextBlock Text="Staff Portal" FontSize="16" FontWeight="Bold" Foreground="#101828"/>
+                        <TextBlock Text="Bộ phận vận hành" FontSize="12" Foreground="#667085" Margin="0,2,0,0"/>
+                    </StackPanel>
+                </Grid>
+
+                <StackPanel Grid.Row="1">
+                    <Button Style="{StaticResource SidebarMenuButtonActive}">
+                        <StackPanel Orientation="Horizontal">
+                            <Path Data="M4,4H10V10H4V4M4,14H10V20H4V14M14,4H20V10H14V4M14,14H20V20H14V14Z" Fill="White" Width="18" Height="18" Margin="0,0,12,0" VerticalAlignment="Center"/>
+                            <TextBlock Text="Bảng điều khiển" FontSize="14" FontWeight="SemiBold"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Style="{StaticResource SidebarMenuButton}">
+                        <StackPanel Orientation="Horizontal">
+                            <Path Data="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L19.71,19L18.3,20.41L13.03,15.14C11.89,16.11 10.41,16.7 9.5,16.7A6.5,6.5 0 0,1 3,10.2A6.5,6.5 0 0,1 9.5,3M9.5,5A4.5,4.5 0 0,0 5,9.5A4.5,4.5 0 0,0 9.5,14A4.5,4.5 0 0,0 14,9.5A4.5,4.5 0 0,0 9.5,5Z" Fill="#667085" Width="18" Height="18" Margin="0,0,12,0" VerticalAlignment="Center"/>
+                            <TextBlock Text="Tra cứu Tour" FontSize="14" FontWeight="Medium"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Style="{StaticResource SidebarMenuButton}">
+                        <StackPanel Orientation="Horizontal">
+                            <Path Data="M13,7H11V11H7V13H11V17H13V13H17V11H13V7M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4A8,8 0 0,1 22,12A8,8 0 0,1 12,20Z" Fill="#667085" Width="18" Height="18" Margin="0,0,12,0" VerticalAlignment="Center"/>
+                            <TextBlock Text="Tạo đặt chỗ" FontSize="14" FontWeight="Medium"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Style="{StaticResource SidebarMenuButton}">
+                        <StackPanel Orientation="Horizontal">
+                            <Path Data="M12,5.17L18.83,12L12,18.83L5.17,12L12,5.17M12,2L2,12L12,22L22,12L12,2Z" Fill="#667085" Width="18" Height="18" Margin="0,0,12,0" VerticalAlignment="Center"/>
+                            <TextBlock Text="Quản lý Đơn hàng" FontSize="14" FontWeight="Medium"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+
+                <Button Grid.Row="2" Style="{StaticResource SidebarMenuButton}" Margin="12,0,12,24">
+                    <StackPanel Orientation="Horizontal">
+                        <Path Data="M14.08,15.59L16.67,13H7V11H16.67L14.08,8.41L15.5,7L20.5,12L15.5,17L14.08,15.59M19,3A2,2 0 0,1 21,5V7H19V5H5V19H19V17H21V19A2,2 0 0,1 19,21H5A2,2 0 0,1 3,19V5A2,2 0 0,1 5,3H19Z" Fill="#667085" Width="18" Height="18" Margin="0,0,12,0" VerticalAlignment="Center"/>
+                        <TextBlock Text="Đăng xuất" FontSize="14" FontWeight="Medium"/>
+                    </StackPanel>
+                </Button>
+            </Grid>
+        </Border>
+
+        <Grid Grid.Column="1" Margin="15">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" Margin="10,0,10,15">
+                <TextBlock x:Name="txtHeaderStaffName" Text="Chào buổi sáng,..." FontSize="22" FontWeight="Bold" Foreground="#101828" VerticalAlignment="Center"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <Button Background="Transparent" BorderBrush="Transparent" Margin="0,0,15,0" Cursor="Hand">
+                        <Path Data="M12,22A2,2 0 0,0 14,20H10A2,2 0 0,0 12,22M18,16V11C18,7.93 16.36,5.36 13.5,4.68V4A1.5,1.5 0 0,0 12,2.5A1.5,1.5 0 0,0 10,4V4.68C7.14,5.36 5.5,7.92 5.5,11V16L3.5,18V19H20V18L18,16Z" Fill="#667085" Width="20" Height="20"/>
+                    </Button>
+                    <Button Background="Transparent" BorderBrush="Transparent" Margin="0,0,15,0" Cursor="Hand">
+                        <Path Data="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,18A1.5,1.5 0 0,1 10.5,16.5A1.5,1.5 0 0,1 12,15A1.5,1.5 0 0,1 13.5,16.5A1.5,1.5 0 0,1 12,18M13.5,11.5C13.5,12.5 13,13 12.25,13.75C11.75,14.25 11.5,14.75 11.5,15.5H10.5C10.5,14.25 11,13.75 11.75,13C12.25,12.5 12.5,12.25 12.5,11.5A1.5,1.5 0 0,0 11,10A1.5,1.5 0 0,0 9.5,11.5H8.5C8.5,9.5 10.12,8 12,8A3,3 0 0,1 15,11C15,11.2 14.5,11.3 13.5,11.5Z" Fill="#667085" Width="20" Height="20"/>
+                    </Button>
+                    <Ellipse Width="35" Height="35" Margin="0,0,8,0">
+                        <Ellipse.Fill>
+                            <ImageBrush ImageSource="https://wpf-assets.s3.amazonaws.com/avatar.png" Stretch="UniformToFill"/>
+                        </Ellipse.Fill>
+                    </Ellipse>
+                    <TextBlock x:Name="txtProfileStaffName" Text="..." VerticalAlignment="Center" FontSize="14" Foreground="#344054" FontWeight="SemiBold"/>
+                </StackPanel>
+            </Grid>
+
+            <Border Grid.Row="1" Background="#1D3D8F" CornerRadius="8" Margin="10,0,10,10" Padding="30">
+                <StackPanel HorizontalAlignment="Center" Width="700">
+                    <TextBlock Text="Tra cứu nhanh đơn đặt chỗ" Foreground="White" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,20"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBox x:Name="txtSearch" Padding="40,12,15,12" FontSize="14" BorderThickness="0" Height="46">
+                            <TextBox.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="CornerRadius" Value="4,0,0,4"/>
+                                </Style>
+                            </TextBox.Resources>
+                        </TextBox>
+                        <Path Data="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L19.71,19L18.3,20.41L13.03,15.14C11.89,16.11 10.41,16.7 9.5,16.7A6.5,6.5 0 0,1 3,10.2A6.5,6.5 0 0,1 9.5,3M9.5,5A4.5,4.5 0 0,0 5,9.5A4.5,4.5 0 0,0 9.5,14A4.5,4.5 0 0,0 14,9.5A4.5,4.5 0 0,0 9.5,5Z" Fill="#667085" Width="18" Height="18" HorizontalAlignment="Left" Margin="15,0,0,0" VerticalAlignment="Center"/>
+                        <Button Grid.Column="1" Background="#0A1942" Foreground="White" FontWeight="Bold" Padding="25,0" Content="Tìm kiếm →" BorderThickness="0" Cursor="Hand">
+                            <Button.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="CornerRadius" Value="0,4,4,0"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                    </Grid>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,12,0,0">
+                        <TextBlock Text="Gợi ý:" Foreground="#A3B8CC" FontSize="12"/>
+                        <TextBlock Text=" BK-202308-001 " Foreground="White" FontSize="12" FontWeight="SemiBold" Cursor="Hand"/>
+                        <TextBlock Text=" 0901234567 " Foreground="White" FontSize="12" FontWeight="SemiBold" Cursor="Hand"/>
+                        <TextBlock Text=" Trần Thị B " Foreground="White" FontSize="12" FontWeight="SemiBold" Cursor="Hand"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="7.3*"/>
+                    <ColumnDefinition Width="2.7*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <UniformGrid Grid.Row="0" Columns="3">
+                        <Border Style="{StaticResource CardBorder}" Padding="15">
+                            <Grid>
+                                <StackPanel VerticalAlignment="Center">
+                                    <TextBlock Text="Tổng số chương trình Tour" Foreground="#667085" FontSize="13" FontWeight="Medium"/>
+                                    <TextBlock x:Name="txtTotalTickets" Text="0" FontSize="26" FontWeight="Bold" Foreground="#101828" Margin="0,6"/>
+                                    <TextBlock Text="↗ Hệ thống đang vận hành" Foreground="#12B76A" FontSize="12" FontWeight="SemiBold"/>
+                                </StackPanel>
+                                <Border Width="40" Height="40" Background="#EEF2F6" CornerRadius="6" HorizontalAlignment="Right" VerticalAlignment="Top">
+                                    <Path Data="M22,10V6C22,4.89 21.1,4 20,4H4A2,2 0 0,0 2,6V10C3.11,10 4,10.9 4,12C4,13.1 3.11,14 2,14V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V14A2,2 0 0,0 20,13C20,11.9 20.9,11 22,10M20,8.5V9.5C19.42,10.13 18.25,11.3 18.25,12C18.25,12.7 19.42,13.87 20,14.5V15.5C18.5,15.5 16,14.47 16,12C16,9.53 18.5,8.5 20,8.5M4,8.5C5.5,8.5 14,9.53 14,12C14,14.47 5.5,15.5 4,15.5V14.5C4.58,13.87 5.75,12.7 5.75,12C5.75,11.3 4.58,10.13 4,9.5V8.5Z" Fill="#1D3D8F" Width="20" Height="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </Grid>
+                        </Border>
+                        <Border Style="{StaticResource CardBorder}" Padding="15">
+                            <Grid>
+                                <StackPanel VerticalAlignment="Center">
+                                    <TextBlock Text="Tổng doanh thu ước tính" Foreground="#667085" FontSize="13" FontWeight="Medium"/>
+                                    <TextBlock x:Name="txtTodayRevenue" Text="0 đ" FontSize="26" FontWeight="Bold" Foreground="#101828" Margin="0,6"/>
+                                    <TextBlock Text="↗ +8% mục tiêu ngày" Foreground="#12B76A" FontSize="12" FontWeight="SemiBold"/>
+                                </StackPanel>
+                                <Border Width="40" Height="40" Background="#E6F4EA" CornerRadius="6" HorizontalAlignment="Right" VerticalAlignment="Top">
+                                    <Path Data="M21,18H3V6H21M21,4H3C1.89,4 1,4.89 1,6V18A2,2 0 0,0 3,20H21A2,2 0 0,0 23,18V6C23,4.89 22.1,4 21,4M12,11A2,2 0 0,0 10,13A2,2 0 0,0 12,15A2,2 0 0,0 14,13A2,2 0 0,0 12,11Z" Fill="#137333" Width="20" Height="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </Grid>
+                        </Border>
+                        <Border Style="{StaticResource CardBorder}" Padding="15">
+                            <Grid>
+                                <StackPanel VerticalAlignment="Center">
+                                    <TextBlock Text="Thời gian xử lý trung bình" Foreground="#667085" FontSize="13" FontWeight="Medium"/>
+                                    <TextBlock Text="4.2 phút" FontSize="26" FontWeight="Bold" Foreground="#101828" Margin="0,6"/>
+                                    <TextBlock Text="⏱ -0.5m nhanh hơn KPI" Foreground="#B54708" FontSize="12" FontWeight="SemiBold"/>
+                                </StackPanel>
+                                <Border Width="40" Height="40" Background="#FEF08A" CornerRadius="6" HorizontalAlignment="Right" VerticalAlignment="Top">
+                                    <Path Data="M12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12.5,7V12.25L17,14.92L16.25,16.15L11,13V7H12.5Z" Fill="#A16207" Width="20" Height="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </Grid>
+                        </Border>
+                    </UniformGrid>
+
+                    <Border Grid.Row="1" Style="{StaticResource CardBorder}" Padding="20">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0" Margin="0,0,0,15">
+                                <TextBlock Text="Giao dịch gần đây (Dữ liệu thật)" FontSize="18" FontWeight="Bold" Foreground="#101828"/>
+                                <TextBlock Text="Xem tất cả ↗" Foreground="#1D3D8F" FontWeight="SemiBold" FontSize="13" HorizontalAlignment="Right" VerticalAlignment="Center" Cursor="Hand"/>
+                            </Grid>
+                            <DataGrid x:Name="dgRecentTransactions" Background="Transparent" BorderThickness="0" AutoGenerateColumns="False" 
+                                      CanUserAddRows="False" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="#EAECF0" HeadersVisibility="Column">
+                                <DataGrid.ColumnHeaderStyle>
+                                    <Style TargetType="DataGridColumnHeader">
+                                        <Setter Property="Background" Value="#F8F9FA"/>
+                                        <Setter Property="Foreground" Value="#667085"/>
+                                        <Setter Property="FontWeight" Value="SemiBold"/>
+                                        <Setter Property="Padding" Value="10,12"/>
+                                        <Setter Property="BorderThickness" Value="0,0,0,1"/>
+                                        <Setter Property="BorderBrush" Value="#EAECF0"/>
+                                    </Style>
+                                </DataGrid.ColumnHeaderStyle>
+                                <DataGrid.RowStyle>
+                                    <Style TargetType="DataGridRow">
+                                        <Setter Property="Padding" Value="0,10"/>
+                                        <Setter Property="Background" Value="Transparent"/>
+                                    </Style>
+                                </DataGrid.RowStyle>
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Mã Đơn" Binding="{Binding Id}" Width="1.2*" FontWeight="Bold" Foreground="#1D3D8F"/>
+                                    <DataGridTextColumn Header="Khách hàng" Binding="{Binding Customer}" Width="2*"/>
+                                    <DataGridTextColumn Header="Tour / Dịch vụ" Binding="{Binding Service}" Width="2.5*"/>
+                                    <DataGridTemplateColumn Header="Trạng thái" Width="1.5*">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Border CornerRadius="4" Padding="8,4" HorizontalAlignment="Left" VerticalAlignment="Center" Background="{Binding StatusBg}">
+                                                    <TextBlock Text="{Binding Status}" Foreground="{Binding StatusFg}" FontSize="11" FontWeight="Bold"/>
+                                                </Border>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    <DataGridTextColumn Header="Giá trị" Binding="{Binding Price}" Width="1.5*" FontWeight="SemiBold"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
+                    </Border>
+                </Grid>
+
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Border Grid.Row="0" Style="{StaticResource CardBorder}" Padding="15">
+                        <StackPanel>
+                            <TextBlock Text="THAO TÁC NHANH" FontSize="12" FontWeight="Bold" Foreground="#667085" Margin="5,0,0,15"/>
+                            <UniformGrid Columns="2" Rows="2">
+                                <Button Background="#1D3D8F" Foreground="White" Height="70" Margin="5" BorderThickness="0" Cursor="Hand">
+                                    <Button.Resources>
+                                        <Style TargetType="Border">
+                                            <Setter Property="CornerRadius" Value="6"/>
+                                        </Style>
+                                    </Button.Resources>
+                                    <StackPanel>
+                                        <Path Data="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" Fill="White" Width="20" Height="20" HorizontalAlignment="Center"/>
+                                        <TextBlock Text="Tạo mới" FontSize="12" FontWeight="SemiBold" HorizontalAlignment="Center" Margin="0,4,0,0"/>
+                                    </StackPanel>
+                                </Button>
+                                <Button Background="#EEF2F6" Foreground="#101828" Height="70" Margin="5" BorderThickness="0" Cursor="Hand">
+                                    <Button.Resources>
+                                        <Style TargetType="Border">
+                                            <Setter Property="CornerRadius" Value="6"/>
+                                        </Style>
+                                    </Button.Resources>
+                                    <StackPanel>
+                                        <Path Data="M18,3H6V7H18M19,12A1,1 0 0,1 18,11A1,1 0 0,1 19,10A1,1 0 0,1 20,11A1,1 0 0,1 19,12M16,19H8V14H16M19,9H5A3,3 0 0,0 2,12V17H6V21H18V17H22V12A3,3 0 0,0 19,9Z" Fill="#101828" Width="20" Height="20" HorizontalAlignment="Center"/>
+                                        <TextBlock Text="In vé" FontSize="12" FontWeight="SemiBold" HorizontalAlignment="Center" Margin="0,4,0,0"/>
+                                    </StackPanel>
+                                </Button>
+                                <Button Background="#EEF2F6" Foreground="#101828" Height="70" Margin="5" BorderThickness="0" Cursor="Hand">
+                                    <Button.Resources>
+                                        <Style TargetType="Border">
+                                            <Setter Property="CornerRadius" Value="6"/>
+                                        </Style>
+                                    </Button.Resources>
+                                    <StackPanel>
+                                        <Path Data="M4,4H10V10H4V4M20,4H14V10H20V4M14,20H20V14H14V20M4,20H10V14H4V20M6,6H8V8H6V6M16,6H18V8H16V6M16,16H18V18H16V16M6,16H8V18H6V16M11,11H13V13H11V11Z" Fill="#101828" Width="20" Height="20" HorizontalAlignment="Center"/>
+                                        <TextBlock Text="Quét QR" FontSize="12" FontWeight="SemiBold" HorizontalAlignment="Center" Margin="0,4,0,0"/>
+                                    </StackPanel>
+                                </Button>
+                                <Button Background="#EEF2F6" Foreground="#101828" Height="70" Margin="5" BorderThickness="0" Cursor="Hand">
+                                    <Button.Resources>
+                                        <Style TargetType="Border">
+                                            <Setter Property="CornerRadius" Value="6"/>
+                                        </Style>
+                                    </Button.Resources>
+                                    <StackPanel>
+                                        <Path Data="M11,18H13V16H11V18M12,2A10,10 0 0,0 2,12A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,6A4,4 0 0,0 8,10H10A2,2 0 0,1 12,8A2,2 0 0,1 14,10C14,12 11,11.75 11,15H13C13,12.75 16,12.5 16,10A4,4 0 0,0 12,6Z" Fill="#101828" Width="20" Height="20" HorizontalAlignment="Center"/>
+                                        <TextBlock Text="Hỗ trợ" FontSize="12" FontWeight="SemiBold" HorizontalAlignment="Center" Margin="0,4,0,0"/>
+                                    </StackPanel>
+                                </Button>
+                            </UniformGrid>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Grid.Row="1" Style="{StaticResource CardBorder}" Padding="15">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0" Text="HIỆU SUẤT CÁ NHÂN" FontSize="12" FontWeight="Bold" Foreground="#667085" Margin="5,0,0,15"/>
+                            <StackPanel Grid.Row="1" Margin="5,0,5,15">
+                                <Grid>
+                                    <TextBlock Text="KPI doanh thu tháng" FontSize="13" Foreground="#344054" FontWeight="Medium"/>
+                                    <TextBlock Text="75%" FontSize="13" FontWeight="Bold" Foreground="#101828" HorizontalAlignment="Right"/>
+                                </Grid>
+                                <ProgressBar Value="75" Height="8" Background="#EAECF0" Foreground="#0A1942" BorderThickness="0" Margin="0,8,0,0">
+                                    <ProgressBar.Resources>
+                                        <Style TargetType="Border">
+                                            <Setter Property="CornerRadius" Value="4"/>
+                                        </Style>
+                                    </ProgressBar.Resources>
+                                </ProgressBar>
+                            </StackPanel>
+                            <StackPanel Grid.Row="2" Margin="5,0,5,20">
+                                <Grid>
+                                    <TextBlock Text="Đánh giá khách hàng" FontSize="13" Foreground="#344054" FontWeight="Medium"/>
+                                    <TextBlock Text="4.8/5.0" FontSize="13" FontWeight="Bold" Foreground="#101828" HorizontalAlignment="Right"/>
+                                </Grid>
+                                <ProgressBar Value="96" Height="8" Background="#EAECF0" Foreground="#12B76A" BorderThickness="0" Margin="0,8,0,0">
+                                    <ProgressBar.Resources>
+                                        <Style TargetType="Border">
+                                            <Setter Property="CornerRadius" Value="4"/>
+                                        </Style>
+                                    </ProgressBar.Resources>
+                                </ProgressBar>
+                            </StackPanel>
+                            <Border Grid.Row="3" Background="#F8F9FA" CornerRadius="6" Padding="15" Margin="5,0,5,5" VerticalAlignment="Bottom">
+                                <TextBlock Text="&quot;Bạn chỉ còn 12 đơn hàng nữa để đạt danh hiệu Nhân viên xuất sắc tháng!&quot;" FontStyle="Italic" FontSize="13" Foreground="#1D3D8F" TextWrapping="Wrap" LineHeight="18" FontWeight="Medium"/>
+                            </Border>
+                        </Grid>
+                    </Border>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

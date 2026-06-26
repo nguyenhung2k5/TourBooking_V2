@@ -1,2 +1,14 @@
-bin/
+# Cache và cấu hình tạm thời của Visual Studio
+.vs/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+bbin/
 obj/
+
+# Các file cấu hình người dùng cá nhân
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
