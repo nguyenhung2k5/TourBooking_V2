@@ -1,17 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using TourBooking.Views; // Gọi namespace chứa các View con của bạn
 
 namespace TourBooking
 {
@@ -23,6 +12,17 @@ namespace TourBooking
         public MainWindow()
         {
             InitializeComponent();
+
+            // Vừa mở ứng dụng lên, nạp sẵn màn hình Bảng điều khiển (Dashboard) vào khung chờ
+            SwitchView(new DashboardView());
+        }
+
+        /// <summary>
+        /// Hàm dùng chung để bất kỳ trang con nào cũng có thể ra lệnh đổi màn hình bên phải
+        /// </summary>
+        public void SwitchView(UserControl newView)
+        {
+            MainContentContainer.Content = newView;
         }
     }
 }

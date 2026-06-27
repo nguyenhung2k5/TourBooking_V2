@@ -7,7 +7,6 @@
         mc:Ignorable="d"
         Title="Staff Portal - Hệ thống Net Tour Booking" Height="750" Width="1350"
         WindowStartupLocation="CenterScreen">
-    <Grid>
-        <v:DashboardView/>
-    </Grid>
+
+    <ContentControl x:Name="MainContentContainer"/>
 </Window>

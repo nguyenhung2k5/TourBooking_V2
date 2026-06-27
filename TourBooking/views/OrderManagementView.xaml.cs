@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System.Windows;
+using System.Windows.Controls;
 
 namespace TourBooking.Views
 {
@@ -10,9 +11,28 @@ namespace TourBooking.Views
         public OrderManagementView()
         {
             InitializeComponent();
+        }
 
-            // Hiện tại Database trống trơn nên không cần gán ItemsSource.
-            // Bảng DataGrid và các ô thống kê sẽ trống dữ liệu chuẩn chỉnh.
+        // ========================================================
+        // LOGIC ĐIỀU HƯỚNG SIDEBAR CHO TRANG QUẢN LÝ ĐƠN HÀNG
+        // ========================================================
+
+        private void BtnDashboard_Click(object sender, RoutedEventArgs e)
+        {
+            var mainWindow = Window.GetWindow(this) as MainWindow;
+            mainWindow?.SwitchView(new DashboardView());
+        }
+
+        private void BtnTourSearch_Click(object sender, RoutedEventArgs e)
+        {
+            var mainWindow = Window.GetWindow(this) as MainWindow;
+            mainWindow?.SwitchView(new TourSearchView());
+        }
+
+        private void BtnBookingCreate_Click(object sender, RoutedEventArgs e)
+        {
+            var mainWindow = Window.GetWindow(this) as MainWindow;
+            mainWindow?.SwitchView(new BookingCreateView());
         }
     }
 }

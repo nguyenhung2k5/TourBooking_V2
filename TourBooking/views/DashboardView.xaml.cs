@@ -65,6 +65,31 @@ namespace TourBooking.Views
                 MessageBox.Show($"Lỗi kết nối khi tải dữ liệu cơ sở dữ liệu: {ex.Message}", "Lỗi hệ thống", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
+        // ========================================================
+        // LOGIC ĐIỀU HƯỚNG CHUYỂN TRANG (ĐÃ THÊM MỚI CHUẨN CHỈ)
+        // ========================================================
+
+        private void BtnTourSearch_Click(object sender, RoutedEventArgs e)
+        {
+            // Tìm về MainWindow gốc và ra lệnh tráo sang trang Tra cứu Tour
+            var mainWindow = Window.GetWindow(this) as MainWindow;
+            mainWindow?.SwitchView(new TourSearchView());
+        }
+
+        private void BtnBookingCreate_Click(object sender, RoutedEventArgs e)
+        {
+            // Tìm về MainWindow gốc và ra lệnh tráo sang trang Tạo Đặt Chỗ
+            var mainWindow = Window.GetWindow(this) as MainWindow;
+            mainWindow?.SwitchView(new BookingCreateView());
+        }
+
+        private void BtnOrderManagement_Click(object sender, RoutedEventArgs e)
+        {
+            // Tìm về MainWindow gốc và ra lệnh tráo sang trang Quản lý Đơn hàng
+            var mainWindow = Window.GetWindow(this) as MainWindow;
+            mainWindow?.SwitchView(new OrderManagementView());
+        }
     }
 
     public class OrderSample
