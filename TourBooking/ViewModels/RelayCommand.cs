@@ -10,13 +10,15 @@ namespace TourBooking.ViewModels
 
         public RelayCommand(Action<object> execute, Predicate<object> canExecute = null)
         {
-            if (execute == null)
-            {
-                throw new ArgumentNullException(nameof(execute));
-            }
-
-            _execute = execute;
+            _execute = execute ?? throw new ArgumentNullException(nameof(execute));
             _canExecute = canExecute;
+        }
+
+        public RelayCommand(Action execute, Func<bool> canExecute = null)
+        {
+            if (execute == null) throw new ArgumentNullException(nameof(execute));
+            _execute = p => execute();
+            if (canExecute != null) _canExecute = p => canExecute();
         }
 
         public bool CanExecute(object parameter)
@@ -31,13 +33,36 @@ namespace TourBooking.ViewModels
 
         public event EventHandler CanExecuteChanged
         {
-            add { CommandManager.RequerySuggested += value; }
-            remove { CommandManager.RequerySuggested -= value; }
+            add => CommandManager.RequerySuggested += value;
+            remove => CommandManager.RequerySuggested -= value;
+        }
+    }
+
+    public class RelayCommand<T> : ICommand
+    {
+        private readonly Action<T> _execute;
+        private readonly Predicate<T> _canExecute;
+
+        public RelayCommand(Action<T> execute, Predicate<T> canExecute = null)
+        {
+            _execute = execute ?? throw new ArgumentNullException(nameof(execute));
+            _canExecute = canExecute;
         }
 
-        public void RaiseCanExecuteChanged()
+        public bool CanExecute(object parameter)
         {
-            CommandManager.InvalidateRequerySuggested();
+            return _canExecute == null || _canExecute(parameter == null ? default(T) : (T)parameter);
+        }
+
+        public void Execute(object parameter)
+        {
+            _execute(parameter == null ? default(T) : (T)parameter);
+        }
+
+        public event EventHandler CanExecuteChanged
+        {
+            add => CommandManager.RequerySuggested += value;
+            remove => CommandManager.RequerySuggested -= value;
         }
     }
 }
