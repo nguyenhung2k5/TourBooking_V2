@@ -89,7 +89,31 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Helpers\NumberFormatConverter.cs" />
     <Compile Include="Helpers\PasswordHasher.cs" />
+    <Compile Include="Services\SessionService.cs" />
+    <Compile Include="ViewModels\AdminBookingsViewModel.cs" />
+    <Compile Include="ViewModels\AdminCustomerViewModel.cs" />
+    <Compile Include="ViewModels\AdminDashboardViewModel.cs" />
+    <Compile Include="ViewModels\AdminStaffViewModel.cs" />
+    <Compile Include="ViewModels\AdminTourViewModel.cs" />
+    <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\RelayCommand.cs" />
+    <Compile Include="Views\Admin\AdminBookingsView.xaml.cs">
+      <DependentUpon>AdminBookingsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Admin\AdminCustomerView.xaml.cs">
+      <DependentUpon>AdminCustomerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Admin\AdminDashboardView.xaml.cs">
+      <DependentUpon>AdminDashboardView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Admin\AdminStaffView.xaml.cs">
+      <DependentUpon>AdminStaffView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Admin\AdminTourView.xaml.cs">
+      <DependentUpon>AdminTourView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\BookingCreateView.xaml.cs">
       <DependentUpon>BookingCreateView.xaml</DependentUpon>
     </Compile>
@@ -133,6 +157,26 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\Admin\AdminBookingsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Admin\AdminCustomerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Admin\AdminDashboardView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Admin\AdminStaffView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Admin\AdminTourView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\BookingCreateView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -214,9 +258,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Services\" />
-    <Folder Include="ViewModels\" />
-    <Folder Include="Views\Admin\" />
     <Folder Include="Views\Dialogs\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

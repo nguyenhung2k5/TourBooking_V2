@@ -1,8 +1,8 @@
 ﻿<Application x:Class="TourBooking.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             StartupUri="Views/LoginWindow.xaml">
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!-- Gọi hàm OnStartup để nạp cửa sổ test -->
     <Application.Resources>
-
+        <!-- Các tài nguyên Colors, Styles giữ nguyên bên dưới -->
     </Application.Resources>
 </Application>
