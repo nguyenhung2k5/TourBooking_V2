@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Linq;
 using System.Windows;
-using TourBooking.Data;       // Thư mục chứa AppDbContext
-using TourBooking.Helpers;    // Thư mục chứa PasswordHasher
-using TourBooking.Models;     // Thư mục chứa Enum UserRole và Staff
+using TourBooking;
+using TourBooking.Data;
+using TourBooking.Helpers;
+using TourBooking.Services;
 
 namespace TourBooking.Views
 {
@@ -17,38 +18,34 @@ namespace TourBooking.Views
         private void BtnLogin_Click(object sender, RoutedEventArgs e)
         {
             string username = txtUsername.Text.Trim();
-            string passwordRaw = txtPassword.Password.Trim();
+            string password = txtPassword.Password;
 
-            // 1. Kiểm tra không để trống ô nhập liệu
-            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(passwordRaw))
+            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
                 MessageBox.Show("Vui lòng nhập đầy đủ tài khoản và mật khẩu!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
-            // 2. Mã hóa mật khẩu người dùng vừa gõ sang SHA256 để đối soát
-            string passwordHash = PasswordHasher.Hash(passwordRaw);
-
             try
             {
-                // 3. Kết nối Database kiểm tra tài khoản
                 using (var db = new AppDbContext())
                 {
-                    var staff = db.Staffs.FirstOrDefault(s => s.Username == username && s.PasswordHash == passwordHash && s.IsActive);
+                    string passwordHash = PasswordHasher.Hash(password);
+                    var staff = db.Staffs.FirstOrDefault(s => s.Username == username
+                                                           && (s.PasswordHash == passwordHash || s.PasswordHash == password)
+                                                           && s.IsActive == true);
 
                     if (staff != null)
                     {
-                        // 4. Mở màn hình chính MainWindow
+                        SessionService.CurrentStaff = staff;
+
                         MainWindow mainWindow = new MainWindow();
                         mainWindow.Show();
-
-                        // 5. Tắt màn hình đăng nhập hiện tại
                         this.Close();
                     }
                     else
                     {
-                        // ĐĂNG NHẬP THẤT BẠI
-                        MessageBox.Show("Tên đăng nhập hoặc mật khẩu không chính xác!", "Lỗi đăng nhập", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show("Tài khoản hoặc mật khẩu không chính xác!", "Đăng nhập thất bại", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                 }
             }

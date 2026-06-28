@@ -1,0 +1,98 @@
+<Window x:Class="TourBooking.Views.Dialogs.TourDetailDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Chi tiết Tour" Height="450" Width="500"
+        WindowStartupLocation="CenterOwner" ResizeMode="NoResize"
+        Background="#F4F6F9" FontFamily="Segoe UI">
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="CHI TIẾT CHƯƠNG TRÌNH TOUR" FontSize="18" FontWeight="Bold" Foreground="#1D3D8F" HorizontalAlignment="Center" Margin="0,0,0,20"/>
+
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <Grid Margin="0,5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Mã Tour:" FontWeight="SemiBold" Foreground="#667085"/>
+                    <TextBlock Grid.Column="1" x:Name="txtTourCode" FontWeight="Bold" Foreground="#101828"/>
+                </Grid>
+
+                <Grid Margin="0,5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Tên Tour:" FontWeight="SemiBold" Foreground="#667085"/>
+                    <TextBlock Grid.Column="1" x:Name="txtTourName" TextWrapping="Wrap" Foreground="#101828"/>
+                </Grid>
+
+                <Grid Margin="0,5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Điểm đến:" FontWeight="SemiBold" Foreground="#667085"/>
+                    <TextBlock Grid.Column="1" x:Name="txtDestination" Foreground="#101828"/>
+                </Grid>
+
+                <Grid Margin="0,5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Ngày đi:" FontWeight="SemiBold" Foreground="#667085"/>
+                    <TextBlock Grid.Column="1" x:Name="txtDepartureDate" Foreground="#101828"/>
+                </Grid>
+
+                <Grid Margin="0,5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Ngày về:" FontWeight="SemiBold" Foreground="#667085"/>
+                    <TextBlock Grid.Column="1" x:Name="txtReturnDate" Foreground="#101828"/>
+                </Grid>
+
+                <Grid Margin="0,5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Giá người lớn:" FontWeight="SemiBold" Foreground="#667085"/>
+                    <TextBlock Grid.Column="1" x:Name="txtPriceAdult" FontWeight="Bold" Foreground="#12B76A"/>
+                </Grid>
+
+                <Grid Margin="0,5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Giá trẻ em:" FontWeight="SemiBold" Foreground="#667085"/>
+                    <TextBlock Grid.Column="1" x:Name="txtPriceChild" FontWeight="Bold" Foreground="#12B76A"/>
+                </Grid>
+
+                <Grid Margin="0,5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Số chỗ trống:" FontWeight="SemiBold" Foreground="#667085"/>
+                    <TextBlock Grid.Column="1" x:Name="txtAvailableSlots" FontWeight="Bold" Foreground="#1D3D8F"/>
+                </Grid>
+            </StackPanel>
+        </ScrollViewer>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,15,0,0">
+            <Button Content="Đóng" Width="100" Height="35" Click="BtnClose_Click" Margin="0,0,10,0" Background="White" BorderBrush="#D0D5DD"/>
+            <Button Content="Đặt vé ngay" Width="120" Height="35" Click="BtnBook_Click" Background="#1D3D8F" Foreground="White" FontWeight="Bold"/>
+        </StackPanel>
+    </Grid>
+</Window>

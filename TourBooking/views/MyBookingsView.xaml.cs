@@ -4,13 +4,13 @@ using TourBooking.ViewModels;
 
 namespace TourBooking.Views
 {
-    public partial class BookingCreateView : UserControl
+    public partial class MyBookingsView : UserControl
     {
-        public BookingCreateView()
+        public MyBookingsView()
         {
             InitializeComponent();
-            DataContext = new BookingViewModel();
-            ((BookingViewModel)DataContext).Load();
+            DataContext = new MyBookingsViewModel();
+            ((MyBookingsViewModel)DataContext).Load();
         }
 
         private void BtnDashboard_Click(object sender, RoutedEventArgs e)
@@ -22,13 +22,13 @@ namespace TourBooking.Views
         private void BtnTourSearch_Click(object sender, RoutedEventArgs e)
         {
             var mainWindow = Window.GetWindow(this) as MainWindow;
-            mainWindow?.SwitchView(new TourSearchView());
+            mainWindow?.SwitchView(new TourListView());
         }
 
-        private void BtnOrderManagement_Click(object sender, RoutedEventArgs e)
+        private void BtnBookingCreate_Click(object sender, RoutedEventArgs e)
         {
             var mainWindow = Window.GetWindow(this) as MainWindow;
-            mainWindow?.SwitchView(new OrderManagementView());
+            mainWindow?.SwitchView(new BookingView());
         }
     }
 }

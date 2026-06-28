@@ -1,5 +1,6 @@
-﻿using System;
+using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TourBooking.Models
 {
@@ -27,5 +28,16 @@ namespace TourBooking.Models
         public int TotalSlots { get; set; }
         public int AvailableSlots { get; set; }
         public bool IsActive { get; set; } = true;
+
+        [NotMapped]
+        public string StatusColor
+        {
+            get
+            {
+                if (AvailableSlots <= 0) return "#F04438"; // Red
+                if (AvailableSlots <= 5) return "#F79009"; // Orange
+                return "#12B76A"; // Green
+            }
+        }
     }
 }

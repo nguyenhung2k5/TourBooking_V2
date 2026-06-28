@@ -1,21 +1,17 @@
-﻿using System.Windows;
+using System.Windows;
 using System.Windows.Controls;
+using TourBooking.ViewModels;
 
 namespace TourBooking.Views
 {
-    /// <summary>
-    /// Interaction logic for TourSearchView.xaml
-    /// </summary>
     public partial class TourSearchView : UserControl
     {
         public TourSearchView()
         {
             InitializeComponent();
+            DataContext = new TourListViewModel();
+            ((TourListViewModel)DataContext).Load();
         }
-
-        // ========================================================
-        // LOGIC ĐIỀU HƯỚNG CHUYỂN TRANG
-        // ========================================================
 
         private void BtnDashboard_Click(object sender, RoutedEventArgs e)
         {
@@ -37,12 +33,14 @@ namespace TourBooking.Views
 
         private void BtnFilter_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Chức năng lọc kết quả đang được xây dựng!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+            var viewModel = DataContext as TourListViewModel;
+            viewModel?.Search();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
+            var viewModel = DataContext as TourListViewModel;
+            viewModel?.Search();
         }
     }
 }

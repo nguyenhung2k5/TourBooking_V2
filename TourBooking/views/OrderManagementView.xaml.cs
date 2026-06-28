@@ -1,21 +1,17 @@
-﻿using System.Windows;
+using System.Windows;
 using System.Windows.Controls;
+using TourBooking.ViewModels;
 
 namespace TourBooking.Views
 {
-    /// <summary>
-    /// Interaction logic for OrderManagementView.xaml
-    /// </summary>
     public partial class OrderManagementView : UserControl
     {
         public OrderManagementView()
         {
             InitializeComponent();
+            DataContext = new MyBookingsViewModel();
+            ((MyBookingsViewModel)DataContext).Load();
         }
-
-        // ========================================================
-        // LOGIC ĐIỀU HƯỚNG SIDEBAR CHO TRANG QUẢN LÝ ĐƠN HÀNG
-        // ========================================================
 
         private void BtnDashboard_Click(object sender, RoutedEventArgs e)
         {

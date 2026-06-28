@@ -90,8 +90,29 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Helpers\PasswordHasher.cs" />
-    <Compile Include="Views\BookingCreateView.xaml.cs">
-      <DependentUpon>BookingCreateView.xaml</DependentUpon>
+    <Compile Include="Helpers\StatusToColorConverter.cs" />
+    <Compile Include="Helpers\SlotToColorConverter.cs" />
+    <Compile Include="Helpers\BoolToVisibilityConverter.cs" />
+    <Compile Include="Helpers\NumberFormatConverter.cs" />
+    <Compile Include="Services\Services.cs" />
+    <Compile Include="Services\TourService.cs" />
+    <Compile Include="Services\CustomerService.cs" />
+    <Compile Include="Services\BookingService.cs" />
+    <Compile Include="Services\PaymentService.cs" />
+    <Compile Include="Services\StaffService.cs" />
+    <Compile Include="Services\QrService.cs" />
+    <Compile Include="Services\PdfService.cs" />
+    <Compile Include="ViewModels\BookingListItemViewModel.cs" />
+    <Compile Include="ViewModels\BookingViewModel.cs" />
+    <Compile Include="ViewModels\DashboardViewModel.cs" />
+    <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\MyBookingsViewModel.cs" />
+    <Compile Include="ViewModels\RelayCommand.cs" />
+    <Compile Include="ViewModels\TourListViewModel.cs" />
+    <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Compile Include="Views\BookingView.xaml.cs">
+      <DependentUpon>BookingView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\DashboardView.xaml.cs">
       <DependentUpon>DashboardView.xaml</DependentUpon>
@@ -99,11 +120,17 @@
     <Compile Include="Views\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\OrderManagementView.xaml.cs">
-      <DependentUpon>OrderManagementView.xaml</DependentUpon>
+    <Compile Include="Views\MyBookingsView.xaml.cs">
+      <DependentUpon>MyBookingsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\TourSearchView.xaml.cs">
-      <DependentUpon>TourSearchView.xaml</DependentUpon>
+    <Compile Include="Views\TourListView.xaml.cs">
+      <DependentUpon>TourListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Dialogs\TourDetailDialog.xaml.cs">
+      <DependentUpon>TourDetailDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Dialogs\QrPaymentDialog.xaml.cs">
+      <DependentUpon>QrPaymentDialog.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -133,7 +160,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\BookingCreateView.xaml">
+    <Page Include="Views\BookingView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -145,11 +172,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\OrderManagementView.xaml">
+    <Page Include="Views\MyBookingsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\TourSearchView.xaml">
+    <Page Include="Views\TourListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Dialogs\TourDetailDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Dialogs\QrPaymentDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -214,10 +249,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Services\" />
-    <Folder Include="ViewModels\" />
     <Folder Include="Views\Admin\" />
-    <Folder Include="Views\Dialogs\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="TourBooking.Views.DashboardView"
+<UserControl x:Class="TourBooking.Views.DashboardView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,8 +6,12 @@
              mc:Ignorable="d" 
              d:DesignHeight="900" d:DesignWidth="1400"
              Background="#F4F6F9"
-             FontFamily="Segoe UI">
-
+             FontFamily="Segoe UI"
+             UseLayoutRounding="True"
+SnapsToDevicePixels="True"
+TextOptions.TextFormattingMode="Display"
+RenderOptions.BitmapScalingMode="HighQuality"
+             >
     <UserControl.Resources>
         <Style TargetType="Border" x:Key="CardBorder">
             <Setter Property="Background" Value="White"/>
@@ -81,8 +85,8 @@
                         <Path Data="M14.4,6L14,4H5V21H7V14H12.4L12.8,16H20V6H14.4M18,14H14.2L13.8,12H7V6H12.2L12.6,8H18V14Z" Fill="White" Width="18" Height="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
                     <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                        <TextBlock Text="Staff Portal" FontSize="16" FontWeight="Bold" Foreground="#101828"/>
-                        <TextBlock Text="Bộ phận vận hành" FontSize="12" Foreground="#667085" Margin="0,2,0,0"/>
+                        <TextBlock Text="TourBooking" FontSize="16" FontWeight="Bold" Foreground="#101828"/>
+                        <TextBlock Text="Nhân Viên" FontSize="12" Foreground="#667085" Margin="0,2,0,0"/>
                     </StackPanel>
                 </Grid>
 
@@ -132,7 +136,7 @@
 
             <!-- Top Header Profile -->
             <Grid Grid.Row="0" Margin="10,0,10,15">
-                <TextBlock x:Name="txtHeaderStaffName" Text="Chào buổi sáng,..." FontSize="22" FontWeight="Bold" Foreground="#101828" VerticalAlignment="Center"/>
+                <TextBlock x:Name="txtHeaderStaffName" Text="{Binding StaffName, StringFormat='Chào buổi sáng, {0}'}" FontSize="22" FontWeight="Bold" Foreground="#101828" VerticalAlignment="Center"/>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
                     <Button Background="Transparent" BorderBrush="Transparent" Margin="0,0,15,0" Cursor="Hand">
                         <Path Data="M12,22A2,2 0 0,0 14,20H10A2,2 0 0,0 12,22M18,16V11C18,7.93 16.36,5.36 13.5,4.68V4A1.5,1.5 0 0,0 12,2.5A1.5,1.5 0 0,0 10,4V4.68C7.14,5.36 5.5,7.92 5.5,11V16L3.5,18V19H20V18L18,16Z" Fill="#667085" Width="20" Height="20"/>
@@ -143,7 +147,7 @@
                     <Border CornerRadius="17.5" Width="35" Height="35" Margin="0,0,8,0" ClipToBounds="True">
                         <Image Source="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&amp;w=100" Stretch="UniformToFill"/>
                     </Border>
-                    <TextBlock x:Name="txtProfileStaffName" Text="..." VerticalAlignment="Center" FontSize="14" Foreground="#344054" FontWeight="SemiBold"/>
+                    <TextBlock x:Name="txtProfileStaffName" Text="{Binding StaffName}" VerticalAlignment="Center" FontSize="14" Foreground="#344054" FontWeight="SemiBold"/>
                 </StackPanel>
             </Grid>
 
@@ -201,7 +205,7 @@
                             <Grid>
                                 <StackPanel VerticalAlignment="Center">
                                     <TextBlock Text="Tổng số chương trình Tour" Foreground="#667085" FontSize="13" FontWeight="Medium"/>
-                                    <TextBlock x:Name="txtTotalTickets" Text="0" FontSize="26" FontWeight="Bold" Foreground="#101828" Margin="0,6"/>
+                                    <TextBlock x:Name="txtTotalTickets" Text="{Binding TotalTours}" FontSize="26" FontWeight="Bold" Foreground="#101828" Margin="0,6"/>
                                     <TextBlock Text="↗ Hệ thống đang vận hành" Foreground="#12B76A" FontSize="12" FontWeight="SemiBold"/>
                                 </StackPanel>
                                 <Border Width="40" Height="40" Background="#EEF2F6" CornerRadius="6" HorizontalAlignment="Right" VerticalAlignment="Top">
@@ -213,7 +217,7 @@
                             <Grid>
                                 <StackPanel VerticalAlignment="Center">
                                     <TextBlock Text="Tổng doanh thu ước tính" Foreground="#667085" FontSize="13" FontWeight="Medium"/>
-                                    <TextBlock x:Name="txtTodayRevenue" Text="0 đ" FontSize="26" FontWeight="Bold" Foreground="#101828" Margin="0,6"/>
+                                    <TextBlock x:Name="txtTodayRevenue" Text="{Binding MonthRevenue, StringFormat={}{0:N0} đ}" FontSize="26" FontWeight="Bold" Foreground="#101828" Margin="0,6"/>
                                     <TextBlock Text="↗ +8% mục tiêu ngày" Foreground="#12B76A" FontSize="12" FontWeight="SemiBold"/>
                                 </StackPanel>
                                 <Border Width="40" Height="40" Background="#E6F4EA" CornerRadius="6" HorizontalAlignment="Right" VerticalAlignment="Top">
@@ -246,7 +250,7 @@
                                 <TextBlock Text="Giao dịch gần đây (Dữ liệu thật)" FontSize="18" FontWeight="Bold" Foreground="#101828"/>
                                 <TextBlock Text="Xem tất cả ↗" Foreground="#1D3D8F" FontWeight="SemiBold" FontSize="13" HorizontalAlignment="Right" VerticalAlignment="Center" Cursor="Hand"/>
                             </Grid>
-                            <DataGrid x:Name="dgRecentTransactions" Background="Transparent" BorderThickness="0" AutoGenerateColumns="False" 
+                            <DataGrid x:Name="dgRecentTransactions" ItemsSource="{Binding RecentBookings}" Background="Transparent" BorderThickness="0" AutoGenerateColumns="False" 
                                       CanUserAddRows="False" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="#EAECF0" HeadersVisibility="Column">
                                 <DataGrid.ColumnHeaderStyle>
                                     <Style TargetType="DataGridColumnHeader">
@@ -265,19 +269,19 @@
                                     </Style>
                                 </DataGrid.RowStyle>
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header="Mã Đơn" Binding="{Binding Id}" Width="1.2*" FontWeight="Bold" Foreground="#1D3D8F"/>
-                                    <DataGridTextColumn Header="Khách hàng" Binding="{Binding Customer}" Width="2*"/>
-                                    <DataGridTextColumn Header="Tour / Dịch vụ" Binding="{Binding Service}" Width="2.5*"/>
+                                    <DataGridTextColumn Header="Mã Đơn" Binding="{Binding BookingCode}" Width="1.2*" FontWeight="Bold" Foreground="#1D3D8F"/>
+                                    <DataGridTextColumn Header="Khách hàng" Binding="{Binding CustomerName}" Width="2*"/>
+                                    <DataGridTextColumn Header="Tour / Dịch vụ" Binding="{Binding TourName}" Width="2.5*"/>
                                     <DataGridTemplateColumn Header="Trạng thái" Width="1.5*">
                                         <DataGridTemplateColumn.CellTemplate>
                                             <DataTemplate>
                                                 <Border CornerRadius="4" Padding="8,4" HorizontalAlignment="Left" VerticalAlignment="Center" Background="{Binding StatusBg}">
-                                                    <TextBlock Text="{Binding Status}" Foreground="{Binding StatusFg}" FontSize="11" FontWeight="Bold"/>
+                                                    <TextBlock Text="{Binding StatusText}" FontSize="11" FontWeight="Bold"/>
                                                 </Border>
                                             </DataTemplate>
                                         </DataGridTemplateColumn.CellTemplate>
                                     </DataGridTemplateColumn>
-                                    <DataGridTextColumn Header="Giá trị" Binding="{Binding Price}" Width="1.5*" FontWeight="SemiBold"/>
+                                    <DataGridTextColumn Header="Giá trị" Binding="{Binding TotalAmount, StringFormat={}{0:N0} đ}" Width="1.5*" FontWeight="SemiBold"/>
                                 </DataGrid.Columns>
                             </DataGrid>
                         </Grid>
