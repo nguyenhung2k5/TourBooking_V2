@@ -1,0 +1,434 @@
+<UserControl x:Class="TourBooking.Views.Admin.AdminDashboardView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:helpers="clr-namespace:TourBooking.Helpers"
+             xmlns:vm="clr-namespace:TourBooking.ViewModels"
+             xmlns:v="clr-namespace:TourBooking.Views.Admin"
+             mc:Ignorable="d" 
+             d:DesignHeight="900" d:DesignWidth="1400"
+             Background="#F4F6F9"
+             FontFamily="Segoe UI"
+             UseLayoutRounding="True"
+             SnapsToDevicePixels="True"
+             TextOptions.TextFormattingMode="Display"
+             RenderOptions.BitmapScalingMode="HighQuality">
+
+    <UserControl.Resources>
+        <helpers:NumberFormatConverter x:Key="MoneyConverter"/>
+
+        <Style TargetType="Border" x:Key="CardBorder">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect BlurRadius="15" ShadowDepth="0" Color="#E2E8F0" Opacity="0.7"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="Button" x:Key="SidebarMenuButton">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Foreground" Value="#344054"/>
+            <Setter Property="Height" Value="45"/>
+            <Setter Property="Margin" Value="12,4,12,4"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="8" Padding="16,0,16,0">
+                            <ContentPresenter VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#EAECF0"/>
+                    <Setter Property="Foreground" Value="#1D3D8F"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="RadioButton" x:Key="SidebarTabButton">
+            <Setter Property="GroupName" Value="MainMenu"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#667085"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Height" Value="45"/>
+            <Setter Property="Margin" Value="12,4,12,4"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="RadioButton">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" CornerRadius="8" Padding="16,0,16,0">
+                            <ContentPresenter VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#EAECF0"/>
+                                <Setter Property="Foreground" Value="#1D3D8F"/>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#2448A4"/>
+                                <Setter Property="Foreground" Value="White"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="CenterTextColumnStyle" TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="260"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Column="0" Background="#F8F9FA" BorderBrush="#EAECF0" BorderThickness="0,0,1,0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0" Margin="16,24,16,30">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Border Grid.Column="0" Width="40" Height="40" Background="#1D3D8F" CornerRadius="6" Margin="0,0,12,0">
+                        <Path Data="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A2,2 0 0,1 14,6A2,2 0 0,1 12,8A2,2 0 0,1 10,6A2,2 0 0,1 12,4M12,18c-2.67,0-8,1.34-8,4v1h16v-1c0-2.66-5.33-4-8-4z" Fill="White" Width="18" Height="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                        <TextBlock Text="Net Tour Booking" FontSize="16" FontWeight="Bold" Foreground="#101828"/>
+                        <TextBlock Text="BẢNG QUẢN TRỊ" FontSize="11" FontWeight="Bold" Foreground="#2448A4" Margin="0,2,0,0" />
+                    </StackPanel>
+                </Grid>
+
+                <StackPanel Grid.Row="1">
+                    <RadioButton Style="{StaticResource SidebarTabButton}" Command="{Binding NavDashboardCommand}" IsChecked="True">
+                        <StackPanel Orientation="Horizontal">
+                            <Path Data="M4,4H10V10H4V4M4,14H10V20H4V14M14,4H20V10H14V4M14,14H20V20H14V14Z" 
+                                  Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=RadioButton}}" 
+                                  Width="18" Height="18" Margin="0,0,12,0" VerticalAlignment="Center"/>
+                            <TextBlock Text="Bảng điều khiển" FontSize="14" FontWeight="SemiBold"/>
+                        </StackPanel>
+                    </RadioButton>
+
+                    <RadioButton Style="{StaticResource SidebarTabButton}" Command="{Binding NavTourCommand}">
+                        <StackPanel Orientation="Horizontal">
+                            <Path Data="M12,2L2,22H22L12,2M12,6L19.53,19H4.47L12,6M11,10V14H13V10H11M11,16V18H13V16H11Z" 
+                                  Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=RadioButton}}" 
+                                  Width="18" Height="18" Margin="0,0,12,0" VerticalAlignment="Center"/>
+                            <TextBlock Text="Quản lý Tour" FontSize="14" FontWeight="Medium"/>
+                        </StackPanel>
+                    </RadioButton>
+
+                    <RadioButton Style="{StaticResource SidebarTabButton}" Command="{Binding NavBookingCommand}">
+                        <StackPanel Orientation="Horizontal">
+                            <Path Data="M19,3H5C3.89,3 3,3.89 3,5V19C3,20.1 3.89,21 5,21H19C20.1,21 21,20.1 21,19V5C21,3.89 20.1,3 19,3M19,19H5V5H19V19M7,10H17V12H7V10M7,6H17V8H7V6M7,14H12V16H7V14Z" 
+                                  Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=RadioButton}}" 
+                                  Width="18" Height="18" Margin="0,0,12,0" VerticalAlignment="Center"/>
+                            <TextBlock Text="Quản lý Đơn hàng" FontSize="14" FontWeight="Medium"/>
+                        </StackPanel>
+                    </RadioButton>
+
+                    <RadioButton Style="{StaticResource SidebarTabButton}" Command="{Binding NavStaffCommand}">
+                        <StackPanel Orientation="Horizontal">
+                            <Path Data="M12,12A4,4 0 0,0 16,8A4,4 0 0,0 12,4A4,4 0 0,0 8,8A4,4 0 0,0 12,12M12,14C9.33,14 4,15.34 4,18V20H20V18C20,15.34 14,14 12,14Z" 
+                                  Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=RadioButton}}" 
+                                  Width="18" Height="18" Margin="0,0,12,0" VerticalAlignment="Center"/>
+                            <TextBlock Text="Quản lý Nhân sự" FontSize="14" FontWeight="Medium"/>
+                        </StackPanel>
+                    </RadioButton>
+
+                    <RadioButton Style="{StaticResource SidebarTabButton}" Command="{Binding NavCustomerCommand}">
+                        <StackPanel Orientation="Horizontal">
+                            <Path Data="M16,13C15.71,13 15.38,13 15.03,13.05C16.19,13.89 17,15 17,16.5V19H23V16.5C23,14.17 18.33,13 16,13M8,13C5.67,13 1,14.17 1,16.5V19H15V16.5C15,14.13 10.33,13 8,13M8,11A3,3 0 0,0 11,8A3,3 0 0,0 8,5A3,3 0 0,0 5,8A3,3 0 0,0 8,11M16,11A3,3 0 0,0 19,8A3,3 0 0,0 16,5A3,3 0 0,0 13,8A3,3 0 0,0 16,11Z" 
+                                  Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=RadioButton}}" 
+                                  Width="18" Height="18" Margin="0,0,12,0" VerticalAlignment="Center"/>
+                            <TextBlock Text="Quản lý Khách hàng" FontSize="14" FontWeight="Medium"/>
+                        </StackPanel>
+                    </RadioButton>
+                </StackPanel>
+
+                <Button Grid.Row="2" Style="{StaticResource SidebarMenuButton}" Margin="12,0,12,24" Command="{Binding LogoutCommand}">
+                    <StackPanel Orientation="Horizontal">
+                        <Path Data="M14.08,15.59L16.67,13H7V11H16.67L14.08,8.41L15.5,7L20.5,12L15.5,17L14.08,15.59M19,3A2,2 0 0,1 21,5V7H19V5H5V19H19V17H21V19A2,2 0 0,1 19,21H5A2,2 0 0,1 3,19V5A2,2 0 0,1 5,3H19Z" Fill="#C62828" Width="18" Height="18" Margin="0,0,12,0" VerticalAlignment="Center"/>
+                        <TextBlock Text="Đăng xuất hệ thống" FontSize="14" FontWeight="Medium" Foreground="#C62828"/>
+                    </StackPanel>
+                </Button>
+            </Grid>
+        </Border>
+
+        <Grid Grid.Column="1">
+            <Grid Margin="15">
+                <Grid.Style>
+                    <Style TargetType="Grid">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding CurrentViewModel}" Value="{x:Null}">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Grid.Style>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0" Margin="10,0,10,15">
+                    <StackPanel VerticalAlignment="Center">
+                        <TextBlock Text="Tổng quan quản trị" FontSize="22" FontWeight="Bold" Foreground="#101828"/>
+                        <TextBlock Text="Chào mừng trở lại, đây là hiệu suất hệ thống tháng này." FontSize="13" Foreground="#667085" Margin="0,2,0,0"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                        <Button Background="Transparent" BorderBrush="Transparent" Margin="0,0,15,0" Cursor="Hand" Command="{Binding ShowNotificationsCommand}">
+                            <Grid>
+                                <Path Data="M12,22A2,2 0 0,0 14,20H10A2,2 0 0,0 12,22M18,16V11C18,7.93 16.36,5.36 13.5,4.68V4A1.5,1.5 0 0,0 12,2.5A1.5,1.5 0 0,0 10,4V4.68C7.14,5.36 5.5,7.92 5.5,11V16L3.5,18V19H20V18L18,16Z" Fill="#667085" Width="20" Height="20"/>
+                                <Ellipse Width="8" Height="8" Fill="#F04438" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,-2,-2,0"/>
+                            </Grid>
+                        </Button>
+                        <Border CornerRadius="17.5" Width="35" Height="35" Margin="0,0,8,0" ClipToBounds="True">
+                            <Image Source="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&amp;w=100" Stretch="UniformToFill"/>
+                        </Border>
+                        <StackPanel VerticalAlignment="Center">
+                            <TextBlock Text="{Binding CurrentAdminName}" FontSize="14" Foreground="#344054" FontWeight="SemiBold"/>
+                            <TextBlock Text="Quản trị viên" FontSize="11" Foreground="#1D3D8F" FontWeight="Medium"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+
+                <Border Grid.Row="1" Background="#1D3D8F" CornerRadius="8" Margin="10,0,10,10" Padding="25">
+                    <Grid>
+                        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Margin="15,0,0,0">
+                            <TextBlock Text="Hệ thống điều hành trung tâm" Foreground="White" FontSize="20" FontWeight="Bold"/>
+                            <TextBlock Text="Quản lý dữ liệu tour du lịch, phê duyệt giao dịch và giám sát chỉ số nhân sự toàn diện." Foreground="#A3B8CC" FontSize="13" Margin="0,4,0,0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                            <Button Content="📥 Xuất báo cáo" Background="Transparent" Foreground="White" BorderBrush="White" BorderThickness="1" FontWeight="SemiBold" Padding="20,10" Margin="0,0,12,0" Cursor="Hand" Command="{Binding ExportReportCommand}">
+                                <Button.Resources>
+                                    <Style TargetType="Border">
+                                        <Setter Property="CornerRadius" Value="6"/>
+                                    </Style>
+                                </Button.Resources>
+                            </Button>
+                            <Button Content="➕ Tạo Tour mới" Background="#0A1942" Foreground="White" FontWeight="Bold" Padding="20,10" Cursor="Hand" Command="{Binding CreateTourCommand}">
+                                <Button.Resources>
+                                    <Style TargetType="Border">
+                                        <Setter Property="CornerRadius" Value="6"/>
+                                    </Style>
+                                </Button.Resources>
+                            </Button>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="7.3*"/>
+                        <ColumnDefinition Width="2.7*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <UniformGrid Grid.Row="0" Columns="3">
+                            <Border Style="{StaticResource CardBorder}" Padding="15">
+                                <Grid>
+                                    <StackPanel VerticalAlignment="Center">
+                                        <TextBlock Text="Tổng doanh thu ước tính" Foreground="#667085" FontSize="13" FontWeight="Medium"/>
+                                        <TextBlock Text="{Binding TotalRevenue, Converter={StaticResource MoneyConverter}}" FontSize="24" FontWeight="Bold" Foreground="#101828" Margin="0,6,0,0"/>
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+                            <Border Style="{StaticResource CardBorder}" Padding="15">
+                                <Grid>
+                                    <StackPanel VerticalAlignment="Center">
+                                        <TextBlock Text="Tổng đơn đặt đã hoàn tất" Foreground="#667085" FontSize="13" FontWeight="Medium"/>
+                                        <TextBlock Text="{Binding TotalBookings, StringFormat='{}{0} đơn'}" FontSize="24" FontWeight="Bold" Foreground="#101828" Margin="0,6,0,0"/>
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+                            <Border Style="{StaticResource CardBorder}" Padding="15">
+                                <Grid>
+                                    <StackPanel VerticalAlignment="Center">
+                                        <TextBlock Text="Chương trình Tour hoạt động" Foreground="#667085" FontSize="13" FontWeight="Medium"/>
+                                        <TextBlock Text="{Binding ActiveTours, StringFormat='{}{0} Tour'}" FontSize="24" FontWeight="Bold" Foreground="#101828" Margin="0,6,0,0"/>
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+                        </UniformGrid>
+
+                        <Border Grid.Row="1" Style="{StaticResource CardBorder}" Padding="20">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0" Margin="0,0,0,15">
+                                    <TextBlock Text="Giao dịch gần đây toàn hệ thống" FontSize="18" FontWeight="Bold" Foreground="#101828"/>
+                                    <Button Background="Transparent" BorderThickness="0" Cursor="Hand" Command="{Binding NavBookingCommand}" HorizontalAlignment="Right" VerticalAlignment="Center">
+                                        <TextBlock Text="Xem tất cả đơn hàng ↗" Foreground="#1D3D8F" FontWeight="SemiBold" FontSize="13"/>
+                                    </Button>
+                                </Grid>
+
+                                <DataGrid ItemsSource="{Binding RecentBookings}" Background="Transparent" BorderThickness="0" AutoGenerateColumns="False" CanUserAddRows="False" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="#EAECF0" HeadersVisibility="Column" RowHeight="50">
+                                    <DataGrid.ColumnHeaderStyle>
+                                        <Style TargetType="DataGridColumnHeader">
+                                            <Setter Property="Background" Value="#F8F9FA"/>
+                                            <Setter Property="Foreground" Value="#667085"/>
+                                            <Setter Property="FontWeight" Value="SemiBold"/>
+                                            <Setter Property="Padding" Value="10,12"/>
+                                            <Setter Property="BorderThickness" Value="0,0,0,1"/>
+                                            <Setter Property="BorderBrush" Value="#EAECF0"/>
+                                        </Style>
+                                    </DataGrid.ColumnHeaderStyle>
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Mã Đơn" Binding="{Binding BookingCode}" Width="1.2*" FontWeight="Bold" Foreground="#1D3D8F" ElementStyle="{StaticResource CenterTextColumnStyle}"/>
+                                        <DataGridTextColumn Header="Khách hàng" Binding="{Binding Customer.FullName}" Width="1.8*" ElementStyle="{StaticResource CenterTextColumnStyle}"/>
+                                        <DataGridTextColumn Header="Tour / Chương trình" Binding="{Binding Tour.TourName}" Width="2.5*" ElementStyle="{StaticResource CenterTextColumnStyle}"/>
+                                        <DataGridTemplateColumn Header="Trạng thái" Width="1.5*">
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <Border CornerRadius="4" Padding="8,4" HorizontalAlignment="Left" VerticalAlignment="Center" Background="#D1FADF">
+                                                        <TextBlock Text="{Binding Status}" Foreground="#2E7D32" FontSize="11" FontWeight="Bold"/>
+                                                    </Border>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
+                                        <DataGridTextColumn Header="Doanh thu" Binding="{Binding TotalAmount, Converter={StaticResource MoneyConverter}}" Width="1.5*" FontWeight="SemiBold" ElementStyle="{StaticResource CenterTextColumnStyle}"/>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </Grid>
+                        </Border>
+                    </Grid>
+
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <Border Grid.Row="0" Style="{StaticResource CardBorder}" Padding="15">
+                            <StackPanel>
+                                <TextBlock Text="ĐIỀU HÀNH NHANH" FontSize="12" FontWeight="Bold" Foreground="#667085" Margin="5,0,0,15"/>
+                                <UniformGrid Columns="2" Rows="1">
+                                    <Button Background="#1D3D8F" Foreground="White" Height="70" Margin="5" BorderThickness="0" Cursor="Hand" Command="{Binding CreateTourCommand}">
+                                        <Button.Resources>
+                                            <Style TargetType="Border">
+                                                <Setter Property="CornerRadius" Value="6"/>
+                                            </Style>
+                                        </Button.Resources>
+                                        <StackPanel>
+                                            <Path Data="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" Fill="White" Width="20" Height="20" HorizontalAlignment="Center"/>
+                                            <TextBlock Text="Thêm Tour" FontSize="11" FontWeight="SemiBold" HorizontalAlignment="Center" Margin="0,6,0,0"/>
+                                        </StackPanel>
+                                    </Button>
+
+                                    <Button Background="#EEF2F6" Foreground="#101828" Height="70" Margin="5" BorderThickness="0" Cursor="Hand" Command="{Binding NavStaffCommand}">
+                                        <Button.Resources>
+                                            <Style TargetType="Border">
+                                                <Setter Property="CornerRadius" Value="6"/>
+                                            </Style>
+                                        </Button.Resources>
+                                        <StackPanel>
+                                            <Path Data="M15,14C12.33,14 7,15.33 7,18V20H23V18C23,15.33 17,14 15,14M15,12A4,4 0 1,0 15,4A4,4 0 0,0 15,12M5,13.28V11H3V9H5V6.72C3.78,6.38 3,5.24 3,4A3,3 0 0,1 6,1A3,3 0 0,1 9,4C9,5.24 8.22,6.38 7,6.72V9H9V11H7V13.28C8.22,13.62 9,14.76 9,16A3,3 0 0,1 6,19A3,3 0 0,1 3,16C3,14.76 3.78,13.62 5,13.28Z" Fill="#101828" Width="20" Height="20" HorizontalAlignment="Center"/>
+                                            <TextBlock Text="+ Nhân viên" FontSize="11" FontWeight="SemiBold" HorizontalAlignment="Center" Margin="0,6,0,0"/>
+                                        </StackPanel>
+                                    </Button>
+                                </UniformGrid>
+                            </StackPanel>
+                        </Border>
+
+                        <Border Grid.Row="1" Style="{StaticResource CardBorder}" Padding="15">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Row="0" Text="TÌNH TRẠNG ĐƠN HÀNG" FontSize="12" FontWeight="Bold" Foreground="#667085" Margin="5,0,0,20"/>
+
+                                <Grid Grid.Row="1" Margin="5,0,5,18">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Border Width="8" Height="8" CornerRadius="4" Background="#F79009" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                                    <TextBlock Grid.Column="1" Text="Đang chờ duyệt" FontSize="13" Foreground="#344054" FontWeight="Medium" VerticalAlignment="Center"/>
+                                    <TextBlock Grid.Column="2" Text="{Binding PendingBookingsCount, TargetNullValue='0'}" FontSize="14" FontWeight="Bold" Foreground="#101828" VerticalAlignment="Center"/>
+                                </Grid>
+
+                                <Grid Grid.Row="2" Margin="5,0,5,18">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Border Width="8" Height="8" CornerRadius="4" Background="#12B76A" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                                    <TextBlock Grid.Column="1" Text="Đã thanh toán (Thành công)" FontSize="13" Foreground="#344054" FontWeight="Medium" VerticalAlignment="Center"/>
+                                    <TextBlock Grid.Column="2" Text="{Binding PaidBookingsCount, TargetNullValue='0'}" FontSize="14" FontWeight="Bold" Foreground="#101828" VerticalAlignment="Center"/>
+                                </Grid>
+
+                                <Grid Grid.Row="3" Margin="5,0,5,20">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Border Width="8" Height="8" CornerRadius="4" Background="#F04438" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                                    <TextBlock Grid.Column="1" Text="Đã hủy / Hoàn tiền" FontSize="13" Foreground="#344054" FontWeight="Medium" VerticalAlignment="Center"/>
+                                    <TextBlock Grid.Column="2" Text="{Binding CancelledBookingsCount, TargetNullValue='0'}" FontSize="14" FontWeight="Bold" Foreground="#101828" VerticalAlignment="Center"/>
+                                </Grid>
+
+                                <Border Grid.Row="4" Background="#EFF4FF" CornerRadius="6" Padding="15" Margin="5,0,5,5" VerticalAlignment="Bottom">
+                                    <TextBlock Text="Dữ liệu trạng thái được đồng bộ trực tiếp từ máy chủ theo thời gian thực." FontStyle="Italic" FontSize="12" Foreground="#1D3D8F" TextWrapping="Wrap" LineHeight="18"/>
+                                </Border>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                </Grid>
+            </Grid>
+
+            <ContentControl Content="{Binding CurrentViewModel}">
+                <ContentControl.Resources>
+                    <DataTemplate DataType="{x:Type vm:AdminTourViewModel}">
+                        <v:AdminTourView/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type vm:AdminBookingsViewModel}">
+                        <v:AdminBookingsView/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type vm:AdminStaffViewModel}">
+                        <v:AdminStaffView/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type vm:AdminCustomerViewModel}">
+                        <v:AdminCustomerView/>
+                    </DataTemplate>
+                </ContentControl.Resources>
+            </ContentControl>
+
+        </Grid>
+    </Grid>
+</UserControl>

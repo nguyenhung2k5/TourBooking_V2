@@ -1,5 +1,6 @@
 using System.Windows;
 using System.Windows.Controls;
+using TourBooking.Services;
 using TourBooking.ViewModels;
 
 namespace TourBooking.Views
@@ -22,13 +23,25 @@ namespace TourBooking.Views
         private void BtnTourSearch_Click(object sender, RoutedEventArgs e)
         {
             var mainWindow = Window.GetWindow(this) as MainWindow;
-            mainWindow?.SwitchView(new TourSearchView());
+            mainWindow?.SwitchView(new TourListView());
         }
 
         private void BtnOrderManagement_Click(object sender, RoutedEventArgs e)
         {
             var mainWindow = Window.GetWindow(this) as MainWindow;
-            mainWindow?.SwitchView(new OrderManagementView());
+            mainWindow?.SwitchView(new MyBookingsView());
+        }
+
+        private void BtnLogout_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show("Bạn có chắc chắn muốn đăng xuất khỏi hệ thống?", "Xác nhận", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                SessionService.Logout();
+                var mainWindow = Window.GetWindow(this) as MainWindow;
+                LoginWindow loginWindow = new LoginWindow();
+                loginWindow.Show();
+                mainWindow?.Close();
+            }
         }
     }
 }

@@ -1,5 +1,7 @@
-﻿using System.Windows;
-using TourBooking.Views;    
+using System.Windows;
+using TourBooking.Views;
+using TourBooking.Views.Admin;
+using TourBooking.ViewModels;
 using TourBooking.Services;
 
 namespace TourBooking
@@ -9,7 +11,23 @@ namespace TourBooking
         public MainWindow()
         {
             InitializeComponent();
-            SwitchView(new DashboardView());
+            LoadInterface();
+        }
+
+        public void LoadInterface()
+        {
+            if (SessionService.IsAdmin)
+            {
+                Title = "Admin Portal - Hệ thống Net Tour Booking";
+                var adminVM = new AdminDashboardViewModel();
+                var adminView = new AdminDashboardView { DataContext = adminVM };
+                SwitchView(adminView);
+            }
+            else
+            {
+                Title = "Staff Portal - Hệ thống Net Tour Booking";
+                SwitchView(new DashboardView());
+            }
         }
 
         public void SwitchView(object newView)

@@ -1,18 +1,17 @@
-﻿using System;
-using System.Linq;
+using System;
 using System.Windows;
-using TourBooking;
-using TourBooking.Data;
-using TourBooking.Helpers;
 using TourBooking.Services;
 
 namespace TourBooking.Views
 {
     public partial class LoginWindow : Window
     {
+        private readonly StaffService _staffService;
+
         public LoginWindow()
         {
             InitializeComponent();
+            _staffService = new StaffService();
         }
 
         private void BtnLogin_Click(object sender, RoutedEventArgs e)
@@ -28,25 +27,18 @@ namespace TourBooking.Views
 
             try
             {
-                using (var db = new AppDbContext())
+                var staff = _staffService.Login(username, password);
+                if (staff != null)
                 {
-                    string passwordHash = PasswordHasher.Hash(password);
-                    var staff = db.Staffs.FirstOrDefault(s => s.Username == username
-                                                           && (s.PasswordHash == passwordHash || s.PasswordHash == password)
-                                                           && s.IsActive == true);
+                    SessionService.CurrentStaff = staff;
 
-                    if (staff != null)
-                    {
-                        SessionService.CurrentStaff = staff;
-
-                        MainWindow mainWindow = new MainWindow();
-                        mainWindow.Show();
-                        this.Close();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Tài khoản hoặc mật khẩu không chính xác!", "Đăng nhập thất bại", MessageBoxButton.OK, MessageBoxImage.Error);
-                    }
+                    MainWindow mainWindow = new MainWindow();
+                    mainWindow.Show();
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Tài khoản hoặc mật khẩu không chính xác!", "Đăng nhập thất bại", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             catch (Exception ex)

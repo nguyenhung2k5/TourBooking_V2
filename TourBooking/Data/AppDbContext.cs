@@ -1,5 +1,8 @@
-﻿using System;
+using System;
+using System.Collections.Generic;
 using System.Data.Entity;
+using System.Linq;
+using TourBooking.Helpers;
 using TourBooking.Models;
 
 namespace TourBooking.Data
@@ -22,16 +25,55 @@ namespace TourBooking.Data
         {
             base.OnModelCreating(modelBuilder);
         }
+
+        public static void EnsureSeedData()
+        {
+            try
+            {
+                using (var db = new AppDbContext())
+                {
+                    string passHash = PasswordHasher.Hash("123456");
+
+                    var sampleStaffs = new List<Staff>
+                    {
+                        new Staff { StaffCode = "NV01", FullName = "Nguyễn Trọng Hùng", Username = "admin", PasswordHash = passHash, Role = UserRole.Admin, IsActive = true },
+                        new Staff { StaffCode = "NV02", FullName = "Trần Thị Mai", Username = "admin2", PasswordHash = passHash, Role = UserRole.Admin, IsActive = true },
+                        new Staff { StaffCode = "NV03", FullName = "Lê Hồng Nhung", Username = "nv_nhung", PasswordHash = passHash, Role = UserRole.Staff, IsActive = true },
+                        new Staff { StaffCode = "NV04", FullName = "Phạm Minh Tuấn", Username = "nv_tuan", PasswordHash = passHash, Role = UserRole.Staff, IsActive = true },
+                        new Staff { StaffCode = "NV05", FullName = "Hoàng Anh Nam", Username = "nv_nam", PasswordHash = passHash, Role = UserRole.Staff, IsActive = true }
+                    };
+
+                    bool addedAny = false;
+                    foreach (var s in sampleStaffs)
+                    {
+                        if (!db.Staffs.Any(x => x.Username.ToLower() == s.Username.ToLower()))
+                        {
+                            db.Staffs.Add(s);
+                            addedAny = true;
+                        }
+                    }
+
+                    if (addedAny)
+                    {
+                        db.SaveChanges();
+                    }
+                }
+            }
+            catch { }
+        }
     }
 
     public class AppDbInitializer : CreateDatabaseIfNotExists<AppDbContext>
     {
         protected override void Seed(AppDbContext context)
         {
-            string defaultPasswordHash = "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92";
+            string defaultPasswordHash = PasswordHasher.Hash("123456");
 
             context.Staffs.Add(new Staff { StaffCode = "NV01", FullName = "Nguyễn Trọng Hùng", Username = "admin", PasswordHash = defaultPasswordHash, Role = UserRole.Admin, IsActive = true });
-            
+            context.Staffs.Add(new Staff { StaffCode = "NV02", FullName = "Trần Thị Mai", Username = "admin2", PasswordHash = defaultPasswordHash, Role = UserRole.Admin, IsActive = true });
+            context.Staffs.Add(new Staff { StaffCode = "NV03", FullName = "Lê Hồng Nhung", Username = "nv_nhung", PasswordHash = defaultPasswordHash, Role = UserRole.Staff, IsActive = true });
+            context.Staffs.Add(new Staff { StaffCode = "NV04", FullName = "Phạm Minh Tuấn", Username = "nv_tuan", PasswordHash = defaultPasswordHash, Role = UserRole.Staff, IsActive = true });
+            context.Staffs.Add(new Staff { StaffCode = "NV05", FullName = "Hoàng Anh Nam", Username = "nv_nam", PasswordHash = defaultPasswordHash, Role = UserRole.Staff, IsActive = true });
 
             context.Tours.Add(new Tour
             {

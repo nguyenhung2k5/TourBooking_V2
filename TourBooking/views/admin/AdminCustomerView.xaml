@@ -1,0 +1,226 @@
+﻿<UserControl x:Class="TourBooking.Views.Admin.AdminCustomerView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:helpers="clr-namespace:TourBooking.Helpers"
+             mc:Ignorable="d" 
+             d:DesignHeight="950" d:DesignWidth="1200"
+             Background="#F4F6F9"
+             FontFamily="Segoe UI">
+
+    <UserControl.Resources>
+        <!-- Bộ chuyển đổi định dạng tiền tệ -->
+        <helpers:NumberFormatConverter x:Key="MoneyConverter"/>
+
+        <!-- Style Card bo góc đổ bóng phẳng dẹt theo thiết kế mẫu -->
+        <Style TargetType="Border" x:Key="CardBorder">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect BlurRadius="15" ShadowDepth="0" Color="#E2E8F0" Opacity="0.7"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Style căn giữa dọc cho các ô dữ liệu dạng văn bản để thay thế VerticalAlignment lỗi -->
+        <Style x:Key="CenterTextColumnStyle" TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="1.2*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+        <!-- TẦNG 1: TOP HEADER (TIÊU ĐỀ & THANH TÌM KIẾM CHUẨN) -->
+        <Grid Grid.Row="0" Margin="10,0,10,15">
+            <TextBlock Text="Quản lý Khách hàng" FontSize="22" FontWeight="Bold" Foreground="#0A1942" VerticalAlignment="Center"/>
+            <TextBox Text="{Binding SearchQuery, UpdateSourceTrigger=PropertyChanged}" Width="280" Height="36" HorizontalAlignment="Right" VerticalContentAlignment="Center" Padding="10,0" BorderBrush="#D0D5DD" Background="White">
+                <TextBox.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="6"/>
+                    </Style>
+                </TextBox.Resources>
+            </TextBox>
+        </Grid>
+
+        <!-- TẦNG 2: 3 Ô SỐ LIỆU KPI TỔNG QUAN HỆ THỐNG -->
+        <UniformGrid Grid.Row="1" Columns="3" Margin="0,0,0,10">
+            <!-- Thẻ 1: Tổng khách hàng -->
+            <Border Style="{StaticResource CardBorder}" Padding="18,15">
+                <StackPanel>
+                    <Grid>
+                        <TextBlock Text="TỔNG KHÁCH HÀNG" Foreground="#667085" FontSize="11" FontWeight="Bold"/>
+                        <Border Background="#D1FADF" HorizontalAlignment="Right" CornerRadius="4" Padding="6,2">
+                            <TextBlock Text="+12% tháng này" Foreground="#12B76A" FontSize="10" FontWeight="Bold"/>
+                        </Border>
+                    </Grid>
+                    <TextBlock Text="{Binding TotalCustomersCount}" FontSize="26" FontWeight="Bold" Foreground="#101828" Margin="0,8,0,0"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Thẻ 2: Doanh thu trung bình -->
+            <Border Style="{StaticResource CardBorder}" Padding="18,15">
+                <StackPanel>
+                    <Grid>
+                        <TextBlock Text="DOANH THU TB" Foreground="#667085" FontSize="11" FontWeight="Bold"/>
+                        <Border Background="#EFF4FF" HorizontalAlignment="Right" CornerRadius="4" Padding="6,2">
+                            <TextBlock Text="VND 1.2B" Foreground="#1D3D8F" FontSize="10" FontWeight="Bold"/>
+                        </Border>
+                    </Grid>
+                    <TextBlock Text="{Binding AverageRevenue, Converter={StaticResource MoneyConverter}}" FontSize="26" FontWeight="Bold" Foreground="#101828" Margin="0,8,0,0"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Thẻ 3: Khách VIP -->
+            <Border Style="{StaticResource CardBorder}" Padding="18,15">
+                <StackPanel>
+                    <TextBlock Text="KHÁCH HÀNG VIP" Foreground="#667085" FontSize="11" FontWeight="Bold"/>
+                    <TextBlock Text="{Binding VipCustomersCount}" FontSize="26" FontWeight="Bold" Foreground="#B45309" Margin="0,8,0,0"/>
+                </StackPanel>
+            </Border>
+        </UniformGrid>
+
+        <!-- TẦNG 3: THANH CÔNG CỤ TÁC VỤ VÀ BẢNG LƯỚI DATA GRID -->
+        <Grid Grid.Row="2" Margin="0,0,0,10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- Khối nút chức năng bổ trợ phía trên bảng -->
+            <Grid Grid.Row="0" Margin="10,5">
+                <StackPanel Orientation="Horizontal">
+                    <Button Content="Bộ lọc" Background="White" Foreground="#344054" BorderBrush="#D0D5DD" BorderThickness="1" Height="34" Width="90" Margin="0,0,10,0"/>
+                    <Button Content="Xuất Excel" Background="White" Foreground="#344054" BorderBrush="#D0D5DD" BorderThickness="1" Height="34" Width="100" Command="{Binding ExportExcelCommand}"/>
+                </StackPanel>
+                <Button Content="+ Thêm Khách Hàng" Background="#0A1942" Foreground="White" FontWeight="Bold" Height="35" HorizontalAlignment="Right" Padding="15,0" Command="{Binding AddCustomerCommand}">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="4"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </Grid>
+
+            <!-- Lưới hiển thị danh sách khách hàng chính -->
+            <Border Grid.Row="1" Style="{StaticResource CardBorder}" Padding="15" Margin="10,5">
+                <DataGrid ItemsSource="{Binding FilteredCustomers}" Background="Transparent" BorderThickness="0" AutoGenerateColumns="False" 
+                          CanUserAddRows="False" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="#EAECF0" HeadersVisibility="Column" RowHeight="65">
+                    <DataGrid.ColumnHeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="Background" Value="#F2F4F7"/>
+                            <Setter Property="Foreground" Value="#475467"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <Setter Property="Padding" Value="10,12"/>
+                        </Style>
+                    </DataGrid.ColumnHeaderStyle>
+
+                    <DataGrid.Columns>
+                        <!-- Cột họ tên kèm khối tròn ký tự tắt Avatar -->
+                        <DataGridTemplateColumn Header="HỌ &amp; TÊN" Width="2.2*">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                        <Border Width="34" Height="34" CornerRadius="17" Background="#D1FADF" Margin="0,0,12,0" VerticalAlignment="Center">
+                                            <TextBlock Text="KH" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="11" FontWeight="Bold" Foreground="#12B76A"/>
+                                        </Border>
+                                        <StackPanel VerticalAlignment="Center">
+                                            <TextBlock Text="{Binding FullName}" FontWeight="Bold" Foreground="#101828" FontSize="13"/>
+                                            <TextBlock Text="{Binding CustomerId, StringFormat='ID: CUST-\{0:D4\}'}" Foreground="#667085" FontSize="10" Margin="0,2,0,0"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <!-- Cột email và số điện thoại (Trường Phone thực tế của bạn) -->
+                        <DataGridTemplateColumn Header="THÔNG TIN LIÊN HỆ" Width="2.5*">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel VerticalAlignment="Center">
+                                        <TextBlock Text="{Binding Email}" Foreground="#344054" FontSize="12"/>
+                                        <TextBlock Text="{Binding Phone, StringFormat='SĐT: \{0\}'}" Foreground="#667085" FontSize="12" Margin="0,2,0,0"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <!-- Cột CCCD thật (NationalId) áp dụng ElementStyle căn dọc hợp lệ -->
+                        <DataGridTextColumn Header="SỐ CMND/CCCD" Binding="{Binding NationalId}" Width="1.8*" ElementStyle="{StaticResource CenterTextColumnStyle}"/>
+
+                        <!-- Cột ngày tham gia tài khoản -->
+                        <DataGridTextColumn Header="NGÀY THAM GIA" Binding="{Binding CreatedAt, StringFormat=\{0:dd/MM/yyyy\}}" Width="1.5*" ElementStyle="{StaticResource CenterTextColumnStyle}"/>
+
+                        <!-- Cột Thao tác nghiệp vụ nhanh -->
+                        <DataGridTemplateColumn Header="THAO TÁC" Width="1*">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="Chi tiết" Background="Transparent" Foreground="#1570EF" BorderThickness="0" FontWeight="SemiBold" VerticalAlignment="Center" HorizontalAlignment="Left" Cursor="Hand"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Border>
+        </Grid>
+
+        <!-- TẦNG 4: BOTTOM WIDGETS (BIỂU ĐỒ TĂNG TRƯỞNG & LỊCH SỬ HOẠT ĐỘNG) -->
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="6.5*"/>
+                <ColumnDefinition Width="3.5*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Biểu đồ cột tăng trưởng giả lập phẳng dẹt -->
+            <Border Grid.Column="0" Style="{StaticResource CardBorder}" Padding="20">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Text="Biểu đồ Tăng trưởng Khách hàng" FontSize="16" FontWeight="Bold" Foreground="#101828" Margin="0,0,0,15"/>
+                    <UniformGrid Grid.Row="1" Columns="10" VerticalAlignment="Bottom" Height="150">
+                        <Border Background="#EAECF0" Height="40" VerticalAlignment="Bottom" Margin="6,0" CornerRadius="2,2,0,0"/>
+                        <Border Background="#EAECF0" Height="65" VerticalAlignment="Bottom" Margin="6,0" CornerRadius="2,2,0,0"/>
+                        <Border Background="#EAECF0" Height="48" VerticalAlignment="Bottom" Margin="6,0" CornerRadius="2,2,0,0"/>
+                        <Border Background="#EAECF0" Height="95" VerticalAlignment="Bottom" Margin="6,0" CornerRadius="2,2,0,0"/>
+                        <Border Background="#1D3D8F" Height="130" VerticalAlignment="Bottom" Margin="6,0" CornerRadius="2,2,0,0"/>
+                        <Border Background="#EAECF0" Height="60" VerticalAlignment="Bottom" Margin="6,0" CornerRadius="2,2,0,0"/>
+                        <Border Background="#EAECF0" Height="110" VerticalAlignment="Bottom" Margin="6,0" CornerRadius="2,2,0,0"/>
+                        <Border Background="#EAECF0" Height="50" VerticalAlignment="Bottom" Margin="6,0" CornerRadius="2,2,0,0"/>
+                        <Border Background="#EAECF0" Height="75" VerticalAlignment="Bottom" Margin="6,0" CornerRadius="2,2,0,0"/>
+                        <Border Background="#EAECF0" Height="140" VerticalAlignment="Bottom" Margin="6,0" CornerRadius="2,2,0,0"/>
+                    </UniformGrid>
+                </Grid>
+            </Border>
+
+            <!-- Khối hoạt động gần đây của khách và Banner báo thành công -->
+            <Border Grid.Column="1" Style="{StaticResource CardBorder}" Padding="20">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Text="Hoạt động gần đây" FontSize="16" FontWeight="Bold" Foreground="#101828" Margin="0,0,0,15"/>
+                    <StackPanel Grid.Row="1" VerticalAlignment="Top">
+                        <TextBlock Text="• Nguyễn Văn A vừa đặt Tour Hạ Long (5 phút trước)" Foreground="#344054" FontSize="12" Margin="0,4"/>
+                        <TextBlock Text="• Thêm khách hàng mới: Trần Danh C (12 phút trước)" Foreground="#1570EF" FontSize="12" Margin="0,4"/>
+                        <TextBlock Text="• Cập nhật thông tin số CMND khách hàng (1 giờ trước)" Foreground="#667085" FontSize="12" Margin="0,4"/>
+                    </StackPanel>
+                    <Border Grid.Row="2" Background="#D1FADF" CornerRadius="4" Padding="12,10">
+                        <TextBlock Text="✓ Đã cập nhật dữ liệu thành công!" Foreground="#137333" FontSize="12" FontWeight="SemiBold" HorizontalAlignment="Center"/>
+                    </Border>
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+</UserControl>

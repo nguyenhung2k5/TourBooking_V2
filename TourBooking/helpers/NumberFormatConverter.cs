@@ -26,7 +26,6 @@ namespace TourBooking.Helpers
 
             string cleanValue = value.ToString()
                 .Replace("đ", "")
-                .Replace("đ", "")
                 .Replace(".", "")
                 .Replace(",", "")
                 .Trim();
