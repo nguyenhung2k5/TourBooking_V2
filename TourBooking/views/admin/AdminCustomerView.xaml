@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="TourBooking.Views.Admin.AdminCustomerView"
+<UserControl x:Class="TourBooking.Views.Admin.AdminCustomerView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -42,26 +42,30 @@
         <!-- TẦNG 1: TOP HEADER (TIÊU ĐỀ & THANH TÌM KIẾM CHUẨN) -->
         <Grid Grid.Row="0" Margin="10,0,10,15">
             <TextBlock Text="Quản lý Khách hàng" FontSize="22" FontWeight="Bold" Foreground="#0A1942" VerticalAlignment="Center"/>
-            <TextBox Text="{Binding SearchQuery, UpdateSourceTrigger=PropertyChanged}" Width="280" Height="36" HorizontalAlignment="Right" VerticalContentAlignment="Center" Padding="10,0" BorderBrush="#D0D5DD" Background="White">
-                <TextBox.Resources>
-                    <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="6"/>
-                    </Style>
-                </TextBox.Resources>
-            </TextBox>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                <TextBox Text="{Binding SearchQuery, UpdateSourceTrigger=PropertyChanged}" Width="280" Height="36" Margin="0,0,10,0" VerticalContentAlignment="Center" Padding="10,0" BorderBrush="#D0D5DD" Background="White">
+                    <TextBox.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="6"/>
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+                <Button Content="Xuất CSV" Background="White" Foreground="#344054" BorderBrush="#D0D5DD" BorderThickness="1" FontWeight="SemiBold" Padding="18,0" Height="36" Command="{Binding ExportCsvCommand}" Cursor="Hand">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="6"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </StackPanel>
         </Grid>
 
-        <!-- TẦNG 2: 3 Ô SỐ LIỆU KPI TỔNG QUAN HỆ THỐNG -->
-        <UniformGrid Grid.Row="1" Columns="3" Margin="0,0,0,10">
+        <!-- TẦNG 2: 2 Ô SỐ LIỆU KPI TỔNG QUAN HỆ THỐNG -->
+        <UniformGrid Grid.Row="1" Columns="2" Margin="0,0,0,10">
             <!-- Thẻ 1: Tổng khách hàng -->
             <Border Style="{StaticResource CardBorder}" Padding="18,15">
                 <StackPanel>
-                    <Grid>
-                        <TextBlock Text="TỔNG KHÁCH HÀNG" Foreground="#667085" FontSize="11" FontWeight="Bold"/>
-                        <Border Background="#D1FADF" HorizontalAlignment="Right" CornerRadius="4" Padding="6,2">
-                            <TextBlock Text="+12% tháng này" Foreground="#12B76A" FontSize="10" FontWeight="Bold"/>
-                        </Border>
-                    </Grid>
+                    <TextBlock Text="TỔNG KHÁCH HÀNG" Foreground="#667085" FontSize="11" FontWeight="Bold"/>
                     <TextBlock Text="{Binding TotalCustomersCount}" FontSize="26" FontWeight="Bold" Foreground="#101828" Margin="0,8,0,0"/>
                 </StackPanel>
             </Border>
@@ -69,21 +73,8 @@
             <!-- Thẻ 2: Doanh thu trung bình -->
             <Border Style="{StaticResource CardBorder}" Padding="18,15">
                 <StackPanel>
-                    <Grid>
-                        <TextBlock Text="DOANH THU TB" Foreground="#667085" FontSize="11" FontWeight="Bold"/>
-                        <Border Background="#EFF4FF" HorizontalAlignment="Right" CornerRadius="4" Padding="6,2">
-                            <TextBlock Text="VND 1.2B" Foreground="#1D3D8F" FontSize="10" FontWeight="Bold"/>
-                        </Border>
-                    </Grid>
+                    <TextBlock Text="DOANH THU TB" Foreground="#667085" FontSize="11" FontWeight="Bold"/>
                     <TextBlock Text="{Binding AverageRevenue, Converter={StaticResource MoneyConverter}}" FontSize="26" FontWeight="Bold" Foreground="#101828" Margin="0,8,0,0"/>
-                </StackPanel>
-            </Border>
-
-            <!-- Thẻ 3: Khách VIP -->
-            <Border Style="{StaticResource CardBorder}" Padding="18,15">
-                <StackPanel>
-                    <TextBlock Text="KHÁCH HÀNG VIP" Foreground="#667085" FontSize="11" FontWeight="Bold"/>
-                    <TextBlock Text="{Binding VipCustomersCount}" FontSize="26" FontWeight="Bold" Foreground="#B45309" Margin="0,8,0,0"/>
                 </StackPanel>
             </Border>
         </UniformGrid>
@@ -94,21 +85,6 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-
-            <!-- Khối nút chức năng bổ trợ phía trên bảng -->
-            <Grid Grid.Row="0" Margin="10,5">
-                <StackPanel Orientation="Horizontal">
-                    <Button Content="Bộ lọc" Background="White" Foreground="#344054" BorderBrush="#D0D5DD" BorderThickness="1" Height="34" Width="90" Margin="0,0,10,0"/>
-                    <Button Content="Xuất Excel" Background="White" Foreground="#344054" BorderBrush="#D0D5DD" BorderThickness="1" Height="34" Width="100" Command="{Binding ExportExcelCommand}"/>
-                </StackPanel>
-                <Button Content="+ Thêm Khách Hàng" Background="#0A1942" Foreground="White" FontWeight="Bold" Height="35" HorizontalAlignment="Right" Padding="15,0" Command="{Binding AddCustomerCommand}">
-                    <Button.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="4"/>
-                        </Style>
-                    </Button.Resources>
-                </Button>
-            </Grid>
 
             <!-- Lưới hiển thị danh sách khách hàng chính -->
             <Border Grid.Row="1" Style="{StaticResource CardBorder}" Padding="15" Margin="10,5">
@@ -179,7 +155,7 @@
                 <ColumnDefinition Width="3.5*"/>
             </Grid.ColumnDefinitions>
 
-            <!-- Biểu đồ cột tăng trưởng giả lập phẳng dẹt -->
+            <!-- Biểu đồ cột tăng trưởng -->
             <Border Grid.Column="0" Style="{StaticResource CardBorder}" Padding="20">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -187,18 +163,18 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <TextBlock Grid.Row="0" Text="Biểu đồ Tăng trưởng Khách hàng" FontSize="16" FontWeight="Bold" Foreground="#101828" Margin="0,0,0,15"/>
-                    <UniformGrid Grid.Row="1" Columns="10" VerticalAlignment="Bottom" Height="150">
-                        <Border Background="#EAECF0" Height="40" VerticalAlignment="Bottom" Margin="6,0" CornerRadius="2,2,0,0"/>
-                        <Border Background="#EAECF0" Height="65" VerticalAlignment="Bottom" Margin="6,0" CornerRadius="2,2,0,0"/>
-                        <Border Background="#EAECF0" Height="48" VerticalAlignment="Bottom" Margin="6,0" CornerRadius="2,2,0,0"/>
-                        <Border Background="#EAECF0" Height="95" VerticalAlignment="Bottom" Margin="6,0" CornerRadius="2,2,0,0"/>
-                        <Border Background="#1D3D8F" Height="130" VerticalAlignment="Bottom" Margin="6,0" CornerRadius="2,2,0,0"/>
-                        <Border Background="#EAECF0" Height="60" VerticalAlignment="Bottom" Margin="6,0" CornerRadius="2,2,0,0"/>
-                        <Border Background="#EAECF0" Height="110" VerticalAlignment="Bottom" Margin="6,0" CornerRadius="2,2,0,0"/>
-                        <Border Background="#EAECF0" Height="50" VerticalAlignment="Bottom" Margin="6,0" CornerRadius="2,2,0,0"/>
-                        <Border Background="#EAECF0" Height="75" VerticalAlignment="Bottom" Margin="6,0" CornerRadius="2,2,0,0"/>
-                        <Border Background="#EAECF0" Height="140" VerticalAlignment="Bottom" Margin="6,0" CornerRadius="2,2,0,0"/>
-                    </UniformGrid>
+                    <ItemsControl Grid.Row="1" ItemsSource="{Binding MonthlyChartData}" VerticalAlignment="Bottom" Height="150">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <UniformGrid Columns="10" />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border Background="{Binding Color}" Height="{Binding Height}" VerticalAlignment="Bottom" Margin="6,0" CornerRadius="2,2,0,0"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
                 </Grid>
             </Border>
 
@@ -211,14 +187,14 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <TextBlock Grid.Row="0" Text="Hoạt động gần đây" FontSize="16" FontWeight="Bold" Foreground="#101828" Margin="0,0,0,15"/>
-                    <StackPanel Grid.Row="1" VerticalAlignment="Top">
-                        <TextBlock Text="• Nguyễn Văn A vừa đặt Tour Hạ Long (5 phút trước)" Foreground="#344054" FontSize="12" Margin="0,4"/>
-                        <TextBlock Text="• Thêm khách hàng mới: Trần Danh C (12 phút trước)" Foreground="#1570EF" FontSize="12" Margin="0,4"/>
-                        <TextBlock Text="• Cập nhật thông tin số CMND khách hàng (1 giờ trước)" Foreground="#667085" FontSize="12" Margin="0,4"/>
-                    </StackPanel>
-                    <Border Grid.Row="2" Background="#D1FADF" CornerRadius="4" Padding="12,10">
-                        <TextBlock Text="✓ Đã cập nhật dữ liệu thành công!" Foreground="#137333" FontSize="12" FontWeight="SemiBold" HorizontalAlignment="Center"/>
-                    </Border>
+                    
+                    <ItemsControl Grid.Row="1" ItemsSource="{Binding RecentActivities}" VerticalAlignment="Top">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding}" Foreground="#344054" FontSize="12" Margin="0,4" TextWrapping="Wrap"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
                 </Grid>
             </Border>
         </Grid>

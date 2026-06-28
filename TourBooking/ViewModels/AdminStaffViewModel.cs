@@ -5,6 +5,10 @@ using System.Windows;
 using System.Windows.Input;
 using TourBooking.Data;
 using TourBooking.Models;
+using TourBooking.Views.Dialogs;
+using Microsoft.Win32;
+using System.Diagnostics;
+using TourBooking.Services;
 
 namespace TourBooking.ViewModels
 {
@@ -39,12 +43,52 @@ namespace TourBooking.ViewModels
         public ICommand AddStaffCommand { get; }
         public ICommand EditStaffCommand { get; }
         public ICommand ToggleStatusCommand { get; }
+        public ICommand ExportCsvCommand { get; }
 
         public AdminStaffViewModel()
         {
-            AddStaffCommand = new RelayCommand<object>(obj => MessageBox.Show("Mở Form thêm nhân viên mới!", "Thông báo"));
-            EditStaffCommand = new RelayCommand<Staff>(staff => MessageBox.Show($"Sửa thông tin nhân viên: {staff?.FullName}", "Thông báo"));
+            AddStaffCommand = new RelayCommand<object>(obj => {
+                var dialog = new StaffFormDialog { Owner = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault() };
+                if (dialog.ShowDialog() == true && dialog.IsSuccess)
+                {
+                    LoadDataFromDatabase();
+                }
+            });
+            EditStaffCommand = new RelayCommand<Staff>(staff => {
+                if (staff == null) return;
+                var dialog = new StaffFormDialog(staff) { Owner = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault() };
+                if (dialog.ShowDialog() == true && dialog.IsSuccess)
+                {
+                    LoadDataFromDatabase();
+                }
+            });
             ToggleStatusCommand = new RelayCommand<Staff>(ExecuteToggleStatus);
+
+            ExportCsvCommand = new RelayCommand<object>(obj => {
+                SaveFileDialog saveFileDialog = new SaveFileDialog
+                {
+                    Filter = "Tập tin CSV (*.csv)|*.csv|Tất cả tập tin (*.*)|*.*",
+                    FileName = $"BaoCao_QuanLyNhanVien_{DateTime.Now:yyyyMMdd_HHmmss}.csv",
+                    Title = "Chọn nơi lưu file báo cáo Nhân viên"
+                };
+
+                if (saveFileDialog.ShowDialog() == true)
+                {
+                    var reportService = new ReportService();
+                    if (reportService.ExportReportToFile("Staff", saveFileDialog.FileName))
+                    {
+                        var result = MessageBox.Show($"Xuất báo cáo Nhân viên thành công!\nFile đã được lưu tại:\n{saveFileDialog.FileName}\n\nBạn có muốn mở file ngay không?", "Thành công", MessageBoxButton.YesNo, MessageBoxImage.Information);
+                        if (result == MessageBoxResult.Yes)
+                        {
+                            Process.Start(new ProcessStartInfo(saveFileDialog.FileName) { UseShellExecute = true });
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Có lỗi xảy ra khi xuất báo cáo Nhân viên!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+            });
 
             LoadDataFromDatabase();
         }

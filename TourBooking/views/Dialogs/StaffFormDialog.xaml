@@ -1,0 +1,72 @@
+<Window x:Class="TourBooking.Views.Dialogs.StaffFormDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Form Quản lý Nhân viên" Height="480" Width="500"
+        WindowStartupLocation="CenterOwner" ResizeMode="NoResize"
+        Background="#F8F9FA" FontFamily="Segoe UI">
+
+    <Border Padding="25">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock x:Name="txtHeaderTitle" Grid.Row="0" Text="Nhập thông tin Nhân viên" FontSize="20" FontWeight="Bold" Foreground="#101828" Margin="0,0,0,20"/>
+
+            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Margin="0,0,0,15">
+                <StackPanel>
+                    <StackPanel Margin="0,0,0,12">
+                        <TextBlock Text="HỌ VÀ TÊN" FontSize="12" FontWeight="SemiBold" Foreground="#344054" Margin="0,0,0,4"/>
+                        <TextBox x:Name="txtFullName" Height="38" Padding="10,8" FontSize="13"/>
+                    </StackPanel>
+
+                    <Grid Margin="0,0,0,12">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="15"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0">
+                            <TextBlock Text="MÃ NHÂN VIÊN" FontSize="12" FontWeight="SemiBold" Foreground="#344054" Margin="0,0,0,4"/>
+                            <TextBox x:Name="txtStaffCode" Height="38" Padding="10,8" FontSize="13"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="2">
+                            <TextBlock Text="TÊN ĐĂNG NHẬP" FontSize="12" FontWeight="SemiBold" Foreground="#344054" Margin="0,0,0,4"/>
+                            <TextBox x:Name="txtUsername" Height="38" Padding="10,8" FontSize="13"/>
+                        </StackPanel>
+                    </Grid>
+
+                    <Grid Margin="0,0,0,12">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="15"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0">
+                            <TextBlock Text="MẬT KHẨU" FontSize="12" FontWeight="SemiBold" Foreground="#344054" Margin="0,0,0,4"/>
+                            <PasswordBox x:Name="txtPassword" Height="38" Padding="10,8" FontSize="13"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="2">
+                            <TextBlock Text="VAI TRÒ (ROLE)" FontSize="12" FontWeight="SemiBold" Foreground="#344054" Margin="0,0,0,4"/>
+                            <ComboBox x:Name="cboRole" SelectedIndex="0" Height="38" Padding="10,6">
+                                <ComboBoxItem Content="Nhân viên (Staff)"/>
+                                <ComboBoxItem Content="Quản trị viên (Admin)"/>
+                            </ComboBox>
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+            </ScrollViewer>
+
+            <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Content="Hủy bỏ" Click="BtnCancel_Click" Width="100" Height="40" Background="#F2F4F7" Foreground="#344054" FontWeight="SemiBold" Margin="0,0,10,0" Cursor="Hand" BorderThickness="0">
+                    <Button.Resources><Style TargetType="Border"><Setter Property="CornerRadius" Value="6"/></Style></Button.Resources>
+                </Button>
+                <Button Content="Lưu dữ liệu" Click="BtnSave_Click" Width="130" Height="40" Background="#1D3D8F" Foreground="White" FontWeight="Bold" Cursor="Hand" BorderThickness="0">
+                    <Button.Resources><Style TargetType="Border"><Setter Property="CornerRadius" Value="6"/></Style></Button.Resources>
+                </Button>
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>

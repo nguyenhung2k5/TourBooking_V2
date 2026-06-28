@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="TourBooking.Views.Admin.AdminTourView"
+<UserControl x:Class="TourBooking.Views.Admin.AdminTourView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -26,6 +26,8 @@
         <!-- Style dùng để căn giữa dọc hợp lệ cho TextBlock bên trong các cột TextColumn -->
         <Style x:Key="CenterTextColumnStyle" TargetType="TextBlock">
             <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+            <Setter Property="TextWrapping" Value="NoWrap"/>
         </Style>
     </UserControl.Resources>
 
@@ -79,43 +81,44 @@
         <!-- SPLIT GRID LAYOUT -->
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="7.3*"/>
-                <ColumnDefinition Width="2.7*"/>
+                <ColumnDefinition Width="7.7*"/>
+                <ColumnDefinition Width="2.3*"/>
             </Grid.ColumnDefinitions>
 
             <!-- LEFT CONTAINER: DATAGRID -->
             <Border Grid.Column="0" Style="{StaticResource CardBorder}" Padding="15">
-                <DataGrid ItemsSource="{Binding ToursList}" Background="Transparent" BorderThickness="0" AutoGenerateColumns="False" CanUserAddRows="False" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="#EAECF0" HeadersVisibility="Column" RowHeight="55">
+                <DataGrid ItemsSource="{Binding ToursList}" Background="Transparent" BorderThickness="1" BorderBrush="#EAECF0" AutoGenerateColumns="False" CanUserAddRows="False" RowHeaderWidth="0" CanUserResizeRows="False" GridLinesVisibility="All" HorizontalGridLinesBrush="#EAECF0" VerticalGridLinesBrush="#EAECF0" HeadersVisibility="Column" RowHeight="52" HorizontalScrollBarVisibility="Auto">
                     <DataGrid.ColumnHeaderStyle>
                         <Style TargetType="DataGridColumnHeader">
                             <Setter Property="Background" Value="#F8F9FA"/>
-                            <Setter Property="Foreground" Value="#667085"/>
-                            <Setter Property="FontWeight" Value="SemiBold"/>
-                            <Setter Property="Padding" Value="8,12"/>
+                            <Setter Property="Foreground" Value="#344054"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <Setter Property="Padding" Value="6,12"/>
+                            <Setter Property="BorderThickness" Value="0,0,1,1"/>
+                            <Setter Property="BorderBrush" Value="#EAECF0"/>
                         </Style>
                     </DataGrid.ColumnHeaderStyle>
                     <DataGrid.Columns>
-                        <!-- Đã sửa: Thay VerticalAlignment trực tiếp bằng ElementStyle -->
-                        <DataGridTextColumn Header="Mã Tour" Binding="{Binding TourCode}" Width="1.2*" FontWeight="Bold" Foreground="#1D3D8F" ElementStyle="{StaticResource CenterTextColumnStyle}"/>
+                        <DataGridTextColumn Header="Mã Tour" Binding="{Binding TourCode}" MinWidth="80" Width="1*" FontWeight="Bold" Foreground="#1D3D8F" ElementStyle="{StaticResource CenterTextColumnStyle}"/>
 
-                        <DataGridTemplateColumn Header="Tên Chương Trình" Width="2.5*">
+                        <DataGridTemplateColumn Header="Tên Chương Trình" MinWidth="160" Width="2.2*">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <StackPanel VerticalAlignment="Center" Margin="4,0">
-                                        <TextBlock Text="{Binding TourName}" FontWeight="Bold" Foreground="#101828" FontSize="13" TextWrapping="Wrap"/>
+                                    <StackPanel VerticalAlignment="Center" Margin="6,0">
+                                        <TextBlock Text="{Binding TourName}" FontWeight="Bold" Foreground="#101828" FontSize="13" TextWrapping="NoWrap" TextTrimming="CharacterEllipsis"/>
                                     </StackPanel>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
 
-                        <!-- Đã sửa: Thay VerticalAlignment trực tiếp bằng ElementStyle -->
-                        <DataGridTextColumn Header="Điểm Đến" Binding="{Binding Destination}" Width="1.3*" ElementStyle="{StaticResource CenterTextColumnStyle}"/>
-                        <DataGridTextColumn Header="Khởi Hành" Binding="{Binding DepartureDate, StringFormat=\{0:dd/MM/yyyy\}}" Width="1.2*" ElementStyle="{StaticResource CenterTextColumnStyle}"/>
+                        <DataGridTextColumn Header="Điểm Đến" Binding="{Binding Destination}" MinWidth="90" Width="1.1*" ElementStyle="{StaticResource CenterTextColumnStyle}"/>
+                        <DataGridTextColumn Header="Khởi Hành" Binding="{Binding DepartureDate, StringFormat=\{0:dd/MM/yyyy\}}" MinWidth="105" Width="1.1*" ElementStyle="{StaticResource CenterTextColumnStyle}"/>
+                        <DataGridTextColumn Header="Ngày Về" Binding="{Binding ReturnDate, StringFormat=\{0:dd/MM/yyyy\}}" MinWidth="95" Width="1.1*" ElementStyle="{StaticResource CenterTextColumnStyle}"/>
 
-                        <DataGridTemplateColumn Header="Chỗ Trống" Width="1.2*">
+                        <DataGridTemplateColumn Header="Chỗ Trống" MinWidth="95" Width="1*">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="6,0">
                                         <TextBlock Text="{Binding AvailableSlots}" FontWeight="Bold" Foreground="#2E7D32"/>
                                         <TextBlock Text="{Binding TotalSlots, StringFormat=' / {0}'}" Foreground="#667085"/>
                                     </StackPanel>
@@ -123,15 +126,16 @@
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
 
-                        <!-- Đã sửa: Thay VerticalAlignment trực tiếp bằng ElementStyle -->
-                        <DataGridTextColumn Header="Giá Vé" Binding="{Binding PriceAdult, Converter={StaticResource MoneyConverter}}" Width="1.3*" FontWeight="SemiBold" ElementStyle="{StaticResource CenterTextColumnStyle}"/>
+                        <DataGridTextColumn Header="Giá Người Lớn" Binding="{Binding PriceAdult, Converter={StaticResource MoneyConverter}}" MinWidth="125" Width="1.3*" FontWeight="SemiBold" Foreground="#101828" ElementStyle="{StaticResource CenterTextColumnStyle}"/>
+                        <DataGridTextColumn Header="Giá Trẻ Em" Binding="{Binding PriceChild, Converter={StaticResource MoneyConverter}}" MinWidth="115" Width="1.3*" FontWeight="SemiBold" Foreground="#667085" ElementStyle="{StaticResource CenterTextColumnStyle}"/>
 
-                        <DataGridTemplateColumn Header="Thao Tác" Width="1*">
+                        <DataGridTemplateColumn Header="Thao Tác" MinWidth="130" Width="1.2*">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                                        <Button Content="Sửa" Background="Transparent" Foreground="#1D3D8F" BorderThickness="0" Command="{Binding DataContext.EditTourCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}" Margin="0,0,5,0" Cursor="Hand"/>
-                                        <Button Content="Xóa" Background="Transparent" Foreground="#C62828" BorderThickness="0" Command="{Binding DataContext.DeleteTourCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}" Cursor="Hand"/>
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <Button Content="Xem" Background="Transparent" Foreground="#12B76A" FontWeight="SemiBold" BorderThickness="0" Command="{Binding DataContext.DetailTourCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}" Margin="0,0,6,0" Cursor="Hand"/>
+                                        <Button Content="Sửa" Background="Transparent" Foreground="#1D3D8F" FontWeight="SemiBold" BorderThickness="0" Command="{Binding DataContext.EditTourCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}" Margin="0,0,6,0" Cursor="Hand"/>
+                                        <Button Content="Xóa" Background="Transparent" Foreground="#C62828" FontWeight="SemiBold" BorderThickness="0" Command="{Binding DataContext.DeleteTourCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}" Cursor="Hand"/>
                                     </StackPanel>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
@@ -148,20 +152,49 @@
                 </Grid.RowDefinitions>
                 <Border Grid.Row="0" Style="{StaticResource CardBorder}" Padding="15">
                     <StackPanel>
-                        <TextBlock Text="Lịch khởi hành gần nhất" FontSize="16" FontWeight="Bold" Margin="0,0,0,10"/>
+                        <TextBlock Text="Lịch khởi hành gần nhất" FontSize="14" FontWeight="Bold" Margin="0,0,0,10"/>
                         <ItemsControl ItemsSource="{Binding UpcomingTours}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <Border Background="#F8F9FA" Padding="10" Margin="0,4" CornerRadius="4">
-                                        <TextBlock Text="{Binding TourName}" FontWeight="SemiBold"/>
+                                        <TextBlock Text="{Binding TourName}" FontWeight="SemiBold" TextWrapping="NoWrap" TextTrimming="CharacterEllipsis"/>
                                     </Border>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
                     </StackPanel>
                 </Border>
-                <Border Grid.Row="1" Background="#0A1942" CornerRadius="8" Margin="10" Padding="20">
-                    <TextBlock Text="Thông Báo Hệ Thống" Foreground="White" FontSize="16" FontWeight="Bold"/>
+                <Border Grid.Row="1" Background="#0A1942" CornerRadius="8" Margin="10" Padding="15">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Grid.Row="0" Margin="0,0,0,12">
+                            <TextBlock Text="Thông Báo Hệ Thống" Foreground="White" FontSize="14" FontWeight="Bold"/>
+                            <TextBlock Text="Cập nhật tự động khi có đơn đặt tour mới" Foreground="#94A3B8" FontSize="11" Margin="0,4,0,0"/>
+                        </StackPanel>
+
+                        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                            <ItemsControl ItemsSource="{Binding SystemNotifications}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border Background="#1E293B" Padding="12,10" Margin="0,0,0,8" CornerRadius="6" BorderBrush="#334155" BorderThickness="1">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Path Grid.Column="0" Data="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A2,2 0 0,1 14,6A2,2 0 0,1 12,8A2,2 0 0,1 10,6A2,2 0 0,1 12,4M12,18C9.33,18 4,19.34 4,22V23H20V22C20,19.34 14.67,18 12,18Z" 
+                                                      Fill="#38BDF8" Width="16" Height="16" VerticalAlignment="Top" Margin="0,2,10,0"/>
+                                                <TextBlock Grid.Column="1" Text="{Binding}" Foreground="#F8FAFC" FontSize="12" TextWrapping="Wrap" LineHeight="16"/>
+                                            </Grid>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ScrollViewer>
+                    </Grid>
                 </Border>
             </Grid>
         </Grid>

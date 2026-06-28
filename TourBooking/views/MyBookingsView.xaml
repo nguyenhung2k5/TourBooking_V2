@@ -231,7 +231,6 @@ RenderOptions.BitmapScalingMode="HighQuality"
 
                     <ComboBox Grid.Column="1" Width="160" Height="38" Margin="10,0,0,0" VerticalContentAlignment="Center" SelectedValue="{Binding SelectedStatus}" SelectedValuePath="Tag">
                         <ComboBoxItem Content="Tất cả trạng thái" Tag="{x:Null}"/>
-                        <ComboBoxItem Content="Chờ thanh toán" Tag="{x:Static models:BookingStatus.Pending}"/>
                         <ComboBoxItem Content="Đã thanh toán" Tag="{x:Static models:BookingStatus.Paid}"/>
                         <ComboBoxItem Content="Đã hủy" Tag="{x:Static models:BookingStatus.Cancelled}"/>
                         <ComboBoxItem Content="Hoàn tiền" Tag="{x:Static models:BookingStatus.Refunded}"/>

@@ -92,6 +92,7 @@
 		<Compile Include="Helpers\NumberFormatConverter.cs" />
 		<Compile Include="Helpers\PasswordHasher.cs" />
 		<Compile Include="Helpers\StatusToColorConverter.cs" />
+		<Compile Include="Helpers\StatusToTextConverter.cs" />
 		<Compile Include="Helpers\SlotToColorConverter.cs" />
 		<Compile Include="Helpers\BoolToVisibilityConverter.cs" />
 		<Compile Include="Services\TourService.cs" />
@@ -101,6 +102,7 @@
 		<Compile Include="Services\StaffService.cs" />
 		<Compile Include="Services\QrService.cs" />
 		<Compile Include="Services\PdfService.cs" />
+		<Compile Include="Services\ReportService.cs" />
 		<Compile Include="Services\SessionService.cs" />
 		<Compile Include="ViewModels\BookingListItemViewModel.cs" />
 		<Compile Include="ViewModels\BookingViewModel.cs" />
@@ -155,6 +157,15 @@
 		</Compile>
 		<Compile Include="Views\Dialogs\QrPaymentDialog.xaml.cs">
 			<DependentUpon>QrPaymentDialog.xaml</DependentUpon>
+		</Compile>
+		<Compile Include="Views\Dialogs\ReportExportDialog.xaml.cs">
+			<DependentUpon>ReportExportDialog.xaml</DependentUpon>
+		</Compile>
+		<Compile Include="Views\Dialogs\TourFormDialog.xaml.cs">
+			<DependentUpon>TourFormDialog.xaml</DependentUpon>
+		</Compile>
+		<Compile Include="Views\Dialogs\StaffFormDialog.xaml.cs">
+			<DependentUpon>StaffFormDialog.xaml</DependentUpon>
 		</Compile>
 		<Page Include="MainWindow.xaml">
 			<Generator>MSBuild:Compile</Generator>
@@ -233,6 +244,18 @@
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
 		<Page Include="Views\Dialogs\QrPaymentDialog.xaml">
+			<SubType>Designer</SubType>
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Include="Views\Dialogs\ReportExportDialog.xaml">
+			<SubType>Designer</SubType>
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Include="Views\Dialogs\TourFormDialog.xaml">
+			<SubType>Designer</SubType>
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Include="Views\Dialogs\StaffFormDialog.xaml">
 			<SubType>Designer</SubType>
 			<Generator>MSBuild:Compile</Generator>
 		</Page>

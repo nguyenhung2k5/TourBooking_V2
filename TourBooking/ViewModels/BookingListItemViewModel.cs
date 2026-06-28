@@ -21,7 +21,6 @@ namespace TourBooking.ViewModels
             {
                 switch (Status)
                 {
-                    case BookingStatus.Pending: return "Chờ thanh toán";
                     case BookingStatus.Paid: return "Đã thanh toán";
                     case BookingStatus.Cancelled: return "Đã hủy";
                     case BookingStatus.Refunded: return "Hoàn tiền";
@@ -38,7 +37,6 @@ namespace TourBooking.ViewModels
                 switch (Status)
                 {
                     case BookingStatus.Paid: return "#12B76A";
-                    case BookingStatus.Pending: return "#F79009";
                     case BookingStatus.Cancelled: return "#F04438";
                     case BookingStatus.Refunded: return "#98A2B3";
                     default: return "#344054";

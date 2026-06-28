@@ -1,12 +1,11 @@
 using System;
 using System.Globalization;
 using System.Windows.Data;
-using System.Windows.Media;
 using TourBooking.Models;
 
 namespace TourBooking.Helpers
 {
-    public class StatusToColorConverter : IValueConverter
+    public class StatusToTextConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
@@ -15,15 +14,14 @@ namespace TourBooking.Helpers
                 switch (status)
                 {
                     case BookingStatus.Paid:
-                        return new SolidColorBrush((Color)ColorConverter.ConvertFromString("#12B76A")); // Xanh lá
+                        return "Đã thanh toán";
                     case BookingStatus.Cancelled:
-                        return new SolidColorBrush((Color)ColorConverter.ConvertFromString("#F04438")); // Đỏ
+                        return "Đã hủy";
                     case BookingStatus.Refunded:
-                        return new SolidColorBrush((Color)ColorConverter.ConvertFromString("#2E90FA")); // Xanh dương
+                        return "Đã hoàn tiền";
                 }
             }
-
-            return Brushes.Gray;
+            return value?.ToString() ?? "";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
