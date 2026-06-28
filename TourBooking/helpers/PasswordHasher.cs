@@ -6,7 +6,7 @@ namespace TourBooking.Helpers
 {
     public static class PasswordHasher
     {
-        // Hàm băm mật khẩu thô sang chuỗi SHA256 để đối soát với DB
+        
         public static string Hash(string password)
         {
             using (SHA256 sha256Hash = SHA256.Create())

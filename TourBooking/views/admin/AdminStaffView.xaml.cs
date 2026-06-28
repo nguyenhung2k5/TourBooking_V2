@@ -15,9 +15,7 @@ using System.Windows.Shapes;
 
 namespace TourBooking.Views.Admin
 {
-    /// <summary>
-    /// Interaction logic for AdminStaffView.xaml
-    /// </summary>
+    
     public partial class AdminStaffView : UserControl
     {
         public AdminStaffView()

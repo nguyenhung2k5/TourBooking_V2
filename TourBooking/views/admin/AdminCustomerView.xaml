@@ -10,10 +10,10 @@
              FontFamily="Segoe UI">
 
     <UserControl.Resources>
-        <!-- Bộ chuyển đổi định dạng tiền tệ -->
+        
         <helpers:NumberFormatConverter x:Key="MoneyConverter"/>
 
-        <!-- Style Card bo góc đổ bóng phẳng dẹt theo thiết kế mẫu -->
+        
         <Style TargetType="Border" x:Key="CardBorder">
             <Setter Property="Background" Value="White"/>
             <Setter Property="CornerRadius" Value="8"/>
@@ -25,7 +25,7 @@
             </Setter>
         </Style>
 
-        <!-- Style căn giữa dọc cho các ô dữ liệu dạng văn bản để thay thế VerticalAlignment lỗi -->
+        
         <Style x:Key="CenterTextColumnStyle" TargetType="TextBlock">
             <Setter Property="VerticalAlignment" Value="Center"/>
         </Style>
@@ -39,7 +39,7 @@
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
 
-        <!-- TẦNG 1: TOP HEADER (TIÊU ĐỀ & THANH TÌM KIẾM CHUẨN) -->
+        
         <Grid Grid.Row="0" Margin="10,0,10,15">
             <TextBlock Text="Quản lý Khách hàng" FontSize="22" FontWeight="Bold" Foreground="#0A1942" VerticalAlignment="Center"/>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
@@ -60,9 +60,9 @@
             </StackPanel>
         </Grid>
 
-        <!-- TẦNG 2: 2 Ô SỐ LIỆU KPI TỔNG QUAN HỆ THỐNG -->
+        
         <UniformGrid Grid.Row="1" Columns="2" Margin="0,0,0,10">
-            <!-- Thẻ 1: Tổng khách hàng -->
+            
             <Border Style="{StaticResource CardBorder}" Padding="18,15">
                 <StackPanel>
                     <TextBlock Text="TỔNG KHÁCH HÀNG" Foreground="#667085" FontSize="11" FontWeight="Bold"/>
@@ -70,7 +70,7 @@
                 </StackPanel>
             </Border>
 
-            <!-- Thẻ 2: Doanh thu trung bình -->
+           
             <Border Style="{StaticResource CardBorder}" Padding="18,15">
                 <StackPanel>
                     <TextBlock Text="DOANH THU TB" Foreground="#667085" FontSize="11" FontWeight="Bold"/>
@@ -79,14 +79,14 @@
             </Border>
         </UniformGrid>
 
-        <!-- TẦNG 3: THANH CÔNG CỤ TÁC VỤ VÀ BẢNG LƯỚI DATA GRID -->
+        
         <Grid Grid.Row="2" Margin="0,0,0,10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <!-- Lưới hiển thị danh sách khách hàng chính -->
+            
             <Border Grid.Row="1" Style="{StaticResource CardBorder}" Padding="15" Margin="10,5">
                 <DataGrid ItemsSource="{Binding FilteredCustomers}" Background="Transparent" BorderThickness="0" AutoGenerateColumns="False" 
                           CanUserAddRows="False" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="#EAECF0" HeadersVisibility="Column" RowHeight="65">
@@ -100,7 +100,7 @@
                     </DataGrid.ColumnHeaderStyle>
 
                     <DataGrid.Columns>
-                        <!-- Cột họ tên kèm khối tròn ký tự tắt Avatar -->
+                        
                         <DataGridTemplateColumn Header="HỌ &amp; TÊN" Width="2.2*">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
@@ -117,7 +117,7 @@
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
 
-                        <!-- Cột email và số điện thoại (Trường Phone thực tế của bạn) -->
+                        
                         <DataGridTemplateColumn Header="THÔNG TIN LIÊN HỆ" Width="2.5*">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
@@ -129,13 +129,13 @@
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
 
-                        <!-- Cột CCCD thật (NationalId) áp dụng ElementStyle căn dọc hợp lệ -->
+                        
                         <DataGridTextColumn Header="SỐ CMND/CCCD" Binding="{Binding NationalId}" Width="1.8*" ElementStyle="{StaticResource CenterTextColumnStyle}"/>
 
-                        <!-- Cột ngày tham gia tài khoản -->
+                        
                         <DataGridTextColumn Header="NGÀY THAM GIA" Binding="{Binding CreatedAt, StringFormat=\{0:dd/MM/yyyy\}}" Width="1.5*" ElementStyle="{StaticResource CenterTextColumnStyle}"/>
 
-                        <!-- Cột Thao tác nghiệp vụ nhanh -->
+                        
                         <DataGridTemplateColumn Header="THAO TÁC" Width="1*">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
@@ -148,14 +148,14 @@
             </Border>
         </Grid>
 
-        <!-- TẦNG 4: BOTTOM WIDGETS (BIỂU ĐỒ TĂNG TRƯỞNG & LỊCH SỬ HOẠT ĐỘNG) -->
+        
         <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="6.5*"/>
                 <ColumnDefinition Width="3.5*"/>
             </Grid.ColumnDefinitions>
 
-            <!-- Biểu đồ cột tăng trưởng -->
+            
             <Border Grid.Column="0" Style="{StaticResource CardBorder}" Padding="20">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -163,7 +163,7 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <TextBlock Grid.Row="0" Text="Biểu đồ Tăng trưởng Khách hàng" FontSize="16" FontWeight="Bold" Foreground="#101828" Margin="0,0,0,15"/>
-                    <ItemsControl Grid.Row="1" ItemsSource="{Binding MonthlyChartData}" VerticalAlignment="Bottom" Height="150">
+                    <ItemsControl Grid.Row="1" ItemsSource="{Binding MonthlyChartData}" VerticalAlignment="Bottom" Height="170">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <UniformGrid Columns="10" />
@@ -171,14 +171,21 @@
                         </ItemsControl.ItemsPanel>
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Border Background="{Binding Color}" Height="{Binding Height}" VerticalAlignment="Bottom" Margin="6,0" CornerRadius="2,2,0,0"/>
+                                <Grid VerticalAlignment="Bottom">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="140"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Border Grid.Row="0" Background="{Binding Color}" Height="{Binding Height}" VerticalAlignment="Bottom" Margin="6,0" CornerRadius="2,2,0,0"/>
+                                    <TextBlock Grid.Row="1" Text="{Binding Label}" FontSize="10" Foreground="#667085" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                                </Grid>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
                 </Grid>
             </Border>
 
-            <!-- Khối hoạt động gần đây của khách và Banner báo thành công -->
+            
             <Border Grid.Column="1" Style="{StaticResource CardBorder}" Padding="20">
                 <Grid>
                     <Grid.RowDefinitions>

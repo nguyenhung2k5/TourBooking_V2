@@ -32,6 +32,23 @@ namespace TourBooking.Views
             mainWindow?.SwitchView(new MyBookingsView());
         }
 
+        private void BtnReportExport_Click(object sender, RoutedEventArgs e)
+        {
+            var dialog = new Views.Dialogs.ReportExportDialog();
+            dialog.Owner = Window.GetWindow(this);
+            dialog.ShowDialog();
+        }
+
+        private void BtnBell_Click(object sender, RoutedEventArgs e)
+        {
+            popNotifications.IsOpen = !popNotifications.IsOpen;
+        }
+
+        private void CloseNotifications_Click(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            popNotifications.IsOpen = false;
+        }
+
         private void BtnLogout_Click(object sender, RoutedEventArgs e)
         {
             if (MessageBox.Show("Bạn có chắc chắn muốn đăng xuất khỏi hệ thống?", "Xác nhận", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)

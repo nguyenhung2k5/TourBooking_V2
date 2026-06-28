@@ -17,6 +17,8 @@
 
     <UserControl.Resources>
         <helpers:NumberFormatConverter x:Key="MoneyConverter"/>
+        <helpers:StatusToTextConverter x:Key="StatusToTextConverter"/>
+        <helpers:StatusToColorConverter x:Key="StatusToColorConverter"/>
 
         <Style TargetType="Border" x:Key="CardBorder">
             <Setter Property="Background" Value="White"/>
@@ -198,15 +200,47 @@
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
-                        <Button Background="Transparent" BorderBrush="Transparent" Margin="0,0,15,0" Cursor="Hand" Command="{Binding ShowNotificationsCommand}">
+                        <Button x:Name="btnBell" Background="Transparent" BorderBrush="Transparent" Margin="0,0,15,0" Cursor="Hand" Click="BtnBell_Click">
                             <Grid>
                                 <Path Data="M12,22A2,2 0 0,0 14,20H10A2,2 0 0,0 12,22M18,16V11C18,7.93 16.36,5.36 13.5,4.68V4A1.5,1.5 0 0,0 12,2.5A1.5,1.5 0 0,0 10,4V4.68C7.14,5.36 5.5,7.92 5.5,11V16L3.5,18V19H20V18L18,16Z" Fill="#667085" Width="20" Height="20"/>
                                 <Ellipse Width="8" Height="8" Fill="#F04438" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,-2,-2,0"/>
                             </Grid>
                         </Button>
-                        <Border CornerRadius="17.5" Width="35" Height="35" Margin="0,0,8,0" ClipToBounds="True">
-                            <Image Source="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&amp;w=100" Stretch="UniformToFill"/>
-                        </Border>
+                        <Popup x:Name="popNotifications" PlacementTarget="{Binding ElementName=btnBell}" Placement="Bottom" StaysOpen="False" AllowsTransparency="True">
+                            <Border Background="White" CornerRadius="8" BorderBrush="#EAECF0" BorderThickness="1" Width="380" Margin="0,5,15,0">
+                                <Border.Effect>
+                                    <DropShadowEffect BlurRadius="15" ShadowDepth="5" Color="#101828" Opacity="0.15"/>
+                                </Border.Effect>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    
+                                    <Border Grid.Row="0" BorderBrush="#EAECF0" BorderThickness="0,0,0,1" Padding="15,12" Background="#F8F9FA">
+                                        <Grid>
+                                            <TextBlock Text="🔔 Thông báo hệ thống (Admin)" FontWeight="Bold" FontSize="13" Foreground="#101828"/>
+                                            <TextBlock Text="Đóng" FontSize="12" FontWeight="SemiBold" Foreground="#1D3D8F" HorizontalAlignment="Right" Cursor="Hand" MouseDown="CloseNotifications_Click"/>
+                                        </Grid>
+                                    </Border>
+                                    
+                                    <ItemsControl Grid.Row="1" ItemsSource="{Binding Notifications}" MaxHeight="300" Padding="10">
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <VirtualizingStackPanel/>
+                                            </ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <Border BorderBrush="#F2F4F7" BorderThickness="0,0,0,1" Padding="5,10" Margin="0,0,0,2">
+                                                    <TextBlock Text="{Binding}" TextWrapping="Wrap" FontSize="12" Foreground="#344054" LineHeight="18"/>
+                                                </Border>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </Grid>
+                            </Border>
+                        </Popup>
                         <StackPanel VerticalAlignment="Center">
                             <TextBlock Text="{Binding CurrentAdminName}" FontSize="14" Foreground="#344054" FontWeight="SemiBold"/>
                             <TextBlock Text="Quản trị viên" FontSize="11" Foreground="#1D3D8F" FontWeight="Medium"/>
@@ -284,7 +318,7 @@
                                     </Button>
                                 </Grid>
 
-                                <DataGrid ItemsSource="{Binding RecentBookings}" Background="Transparent" BorderThickness="0" AutoGenerateColumns="False" CanUserAddRows="False" RowHeaderWidth="0" CanUserResizeRows="False" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="#EAECF0" HeadersVisibility="Column" RowHeight="50">
+                                <DataGrid Grid.Row="1" ItemsSource="{Binding RecentBookings}" Background="Transparent" BorderThickness="0" AutoGenerateColumns="False" CanUserAddRows="False" RowHeaderWidth="0" CanUserResizeRows="False" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="#EAECF0" HeadersVisibility="Column" RowHeight="50">
                                     <DataGrid.ColumnHeaderStyle>
                                         <Style TargetType="DataGridColumnHeader">
                                             <Setter Property="Background" Value="#F8F9FA"/>
@@ -302,8 +336,8 @@
                                         <DataGridTemplateColumn Header="Trạng thái" Width="1.5*">
                                             <DataGridTemplateColumn.CellTemplate>
                                                 <DataTemplate>
-                                                    <Border CornerRadius="4" Padding="8,4" HorizontalAlignment="Left" VerticalAlignment="Center" Background="#D1FADF">
-                                                        <TextBlock Text="{Binding Status}" Foreground="#2E7D32" FontSize="11" FontWeight="Bold"/>
+                                                    <Border CornerRadius="12" Padding="10,6" HorizontalAlignment="Left" VerticalAlignment="Center" Background="#F2F4F7">
+                                                        <TextBlock Text="{Binding Status, Converter={StaticResource StatusToTextConverter}}" Foreground="{Binding Status, Converter={StaticResource StatusToColorConverter}}" FontSize="11" FontWeight="Bold"/>
                                                     </Border>
                                                 </DataTemplate>
                                             </DataGridTemplateColumn.CellTemplate>
@@ -358,7 +392,6 @@
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
                                 <TextBlock Grid.Row="0" Text="TÌNH TRẠNG ĐƠN HÀNG" FontSize="12" FontWeight="Bold" Foreground="#667085" Margin="5,0,0,20"/>
@@ -369,34 +402,23 @@
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="Auto"/>
                                     </Grid.ColumnDefinitions>
-                                    <Border Width="8" Height="8" CornerRadius="4" Background="#F79009" VerticalAlignment="Center" Margin="0,0,10,0"/>
-                                    <TextBlock Grid.Column="1" Text="Đang chờ duyệt" FontSize="13" Foreground="#344054" FontWeight="Medium" VerticalAlignment="Center"/>
-                                    <TextBlock Grid.Column="2" Text="{Binding PendingBookingsCount, TargetNullValue='0'}" FontSize="14" FontWeight="Bold" Foreground="#101828" VerticalAlignment="Center"/>
-                                </Grid>
-
-                                <Grid Grid.Row="2" Margin="5,0,5,18">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                    </Grid.ColumnDefinitions>
                                     <Border Width="8" Height="8" CornerRadius="4" Background="#12B76A" VerticalAlignment="Center" Margin="0,0,10,0"/>
-                                    <TextBlock Grid.Column="1" Text="Đã thanh toán (Thành công)" FontSize="13" Foreground="#344054" FontWeight="Medium" VerticalAlignment="Center"/>
+                                    <TextBlock Grid.Column="1" Text="Đã thanh toán" FontSize="13" Foreground="#344054" FontWeight="Medium" VerticalAlignment="Center"/>
                                     <TextBlock Grid.Column="2" Text="{Binding PaidBookingsCount, TargetNullValue='0'}" FontSize="14" FontWeight="Bold" Foreground="#101828" VerticalAlignment="Center"/>
                                 </Grid>
 
-                                <Grid Grid.Row="3" Margin="5,0,5,20">
+                                <Grid Grid.Row="2" Margin="5,0,5,20">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto"/>
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="Auto"/>
                                     </Grid.ColumnDefinitions>
                                     <Border Width="8" Height="8" CornerRadius="4" Background="#F04438" VerticalAlignment="Center" Margin="0,0,10,0"/>
-                                    <TextBlock Grid.Column="1" Text="Đã hủy / Hoàn tiền" FontSize="13" Foreground="#344054" FontWeight="Medium" VerticalAlignment="Center"/>
+                                    <TextBlock Grid.Column="1" Text="Đã hủy" FontSize="13" Foreground="#344054" FontWeight="Medium" VerticalAlignment="Center"/>
                                     <TextBlock Grid.Column="2" Text="{Binding CancelledBookingsCount, TargetNullValue='0'}" FontSize="14" FontWeight="Bold" Foreground="#101828" VerticalAlignment="Center"/>
                                 </Grid>
 
-                                <Border Grid.Row="4" Background="#EFF4FF" CornerRadius="6" Padding="15" Margin="5,0,5,5" VerticalAlignment="Bottom">
+                                <Border Grid.Row="3" Background="#EFF4FF" CornerRadius="6" Padding="15" Margin="5,0,5,5" VerticalAlignment="Bottom">
                                     <TextBlock Text="Dữ liệu trạng thái được đồng bộ trực tiếp từ máy chủ theo thời gian thực." FontStyle="Italic" FontSize="12" Foreground="#1D3D8F" TextWrapping="Wrap" LineHeight="18"/>
                                 </Border>
                             </Grid>

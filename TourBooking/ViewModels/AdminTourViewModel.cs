@@ -118,7 +118,7 @@ namespace TourBooking.ViewModels
                         .ToList();
                     UpcomingTours = new ObservableCollection<Tour>(upcoming);
 
-                    // Load system notifications from recent bookings
+                    
                     var recentBookings = context.Bookings
                         .Include(b => b.Customer)
                         .Include(b => b.Tour)

@@ -23,7 +23,7 @@
             </Setter>
         </Style>
 
-        <!-- Style dùng để căn giữa dọc hợp lệ cho TextBlock bên trong các cột TextColumn -->
+        
         <Style x:Key="CenterTextColumnStyle" TargetType="TextBlock">
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
@@ -38,7 +38,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!-- TOP BAR -->
+        
         <Grid Grid.Row="0" Margin="10,0,10,15">
             <StackPanel VerticalAlignment="Center">
                 <TextBlock Text="Quản Lý Tour" FontSize="24" FontWeight="Bold" Foreground="#101828"/>
@@ -50,7 +50,7 @@
             </StackPanel>
         </Grid>
 
-        <!-- KPI TILES -->
+        
         <UniformGrid Grid.Row="1" Columns="4" Margin="0,0,0,10">
             <Border Style="{StaticResource CardBorder}" Padding="15">
                 <StackPanel>
@@ -78,14 +78,14 @@
             </Border>
         </UniformGrid>
 
-        <!-- SPLIT GRID LAYOUT -->
+        
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="7.7*"/>
                 <ColumnDefinition Width="2.3*"/>
             </Grid.ColumnDefinitions>
 
-            <!-- LEFT CONTAINER: DATAGRID -->
+            
             <Border Grid.Column="0" Style="{StaticResource CardBorder}" Padding="15">
                 <DataGrid ItemsSource="{Binding ToursList}" Background="Transparent" BorderThickness="1" BorderBrush="#EAECF0" AutoGenerateColumns="False" CanUserAddRows="False" RowHeaderWidth="0" CanUserResizeRows="False" GridLinesVisibility="All" HorizontalGridLinesBrush="#EAECF0" VerticalGridLinesBrush="#EAECF0" HeadersVisibility="Column" RowHeight="52" HorizontalScrollBarVisibility="Auto">
                     <DataGrid.ColumnHeaderStyle>
@@ -144,7 +144,7 @@
                 </DataGrid>
             </Border>
 
-            <!-- RIGHT CONTAINER: SIDE WIDGETS -->
+            
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>

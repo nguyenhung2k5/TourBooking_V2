@@ -20,11 +20,23 @@ namespace TourBooking.ViewModels
         private string _staffName;
         private string _lastError;
 
+        
+        private int _currentPage = 1;
+        private int _totalPages = 1;
+        private const int PageSize = 5;
+        private int _totalBookingCount = 0;
+
+        
+        private decimal _myMonthRevenue;
+        private int _myBookingTarget = 20; 
+
         public DashboardViewModel()
         {
             RecentBookings = new ObservableCollection<BookingListItemViewModel>();
             Notifications = new ObservableCollection<string>();
             LoadCommand = new RelayCommand(_ => Load());
+            PrevPageCommand = new RelayCommand(_ => PreviousPage(), _ => CanPreviousPage());
+            NextPageCommand = new RelayCommand(_ => NextPage(), _ => CanNextPage());
         }
 
         public int TotalTours
@@ -75,9 +87,43 @@ namespace TourBooking.ViewModels
             private set { SetProperty(ref _lastError, value); }
         }
 
+        
+        public int CurrentPage
+        {
+            get { return _currentPage; }
+            set 
+            { 
+                if (SetProperty(ref _currentPage, value))
+                {
+                    LoadRecentBookings();
+                }
+            }
+        }
+
+        public int TotalPages
+        {
+            get { return _totalPages; }
+            private set { SetProperty(ref _totalPages, value); }
+        }
+
+        
+        public decimal MyMonthRevenue
+        {
+            get { return _myMonthRevenue; }
+            private set { SetProperty(ref _myMonthRevenue, value); }
+        }
+
+        public int MyBookingTarget
+        {
+            get { return _myBookingTarget; }
+            set { SetProperty(ref _myBookingTarget, value); }
+        }
+
         public ObservableCollection<BookingListItemViewModel> RecentBookings { get; private set; }
         public ObservableCollection<string> Notifications { get; private set; }
         public ICommand LoadCommand { get; private set; }
+        public ICommand PrevPageCommand { get; private set; }
+        public ICommand NextPageCommand { get; private set; }
 
         public void Load()
         {
@@ -120,17 +166,25 @@ namespace TourBooking.ViewModels
                     {
                         var staffId = SessionService.CurrentStaff.StaffId;
                         MyBookingCount = bookings.Count(b => b.StaffId == staffId);
+
+                        
+                        MyMonthRevenue = bookings.Where(b => b.StaffId == staffId
+                                                        && b.BookingDate >= monthStart
+                                                        && b.BookingDate < nextMonth
+                                                        && b.Status != BookingStatus.Cancelled
+                                                        && b.Status != BookingStatus.Refunded)
+                                               .Select(b => (decimal?)b.TotalAmount)
+                                               .Sum() ?? 0m;
                     }
                     else
                     {
                         MyBookingCount = 0;
+                        MyMonthRevenue = 0m;
                     }
 
-                    RecentBookings.Clear();
-                    foreach (var booking in bookings.OrderByDescending(b => b.BookingDate).Take(8).ToList())
-                    {
-                        RecentBookings.Add(ToBookingItem(booking));
-                    }
+                    
+                    _currentPage = 1;
+                    LoadRecentBookings();
 
                     BuildNotifications(db);
                 }
@@ -141,19 +195,127 @@ namespace TourBooking.ViewModels
             }
         }
 
+        private void LoadRecentBookings()
+        {
+            try
+            {
+                using (var db = new AppDbContext())
+                {
+                    var bookingsQuery = db.Bookings
+                        .Include(b => b.Customer)
+                        .Include(b => b.Tour)
+                        .Include(b => b.Staff);
+
+                    _totalBookingCount = bookingsQuery.Count();
+
+                    
+                    TotalPages = (int)Math.Ceiling((double)_totalBookingCount / PageSize);
+                    if (TotalPages == 0) TotalPages = 1;
+
+                    if (CurrentPage > TotalPages) _currentPage = TotalPages;
+                    if (CurrentPage < 1) _currentPage = 1;
+
+                    int skip = (CurrentPage - 1) * PageSize;
+                    var pagedBookings = bookingsQuery.OrderByDescending(b => b.BookingDate)
+                                                     .Skip(skip)
+                                                     .Take(PageSize)
+                                                     .ToList();
+
+                    RecentBookings.Clear();
+                    foreach (var booking in pagedBookings)
+                    {
+                        RecentBookings.Add(ToBookingItem(booking));
+                    }
+
+                    OnPropertyChanged(nameof(CurrentPage));
+                    OnPropertyChanged(nameof(TotalPages));
+                    OnPropertyChanged(nameof(MyBookingCount));
+                    OnPropertyChanged(nameof(MyMonthRevenue));
+                }
+            }
+            catch (Exception ex)
+            {
+                LastError = ex.Message;
+            }
+        }
+
+        private void PreviousPage()
+        {
+            if (CanPreviousPage())
+            {
+                CurrentPage--;
+            }
+        }
+
+        private bool CanPreviousPage()
+        {
+            return CurrentPage > 1;
+        }
+
+        private void NextPage()
+        {
+            if (CanNextPage())
+            {
+                CurrentPage++;
+            }
+        }
+
+        private bool CanNextPage()
+        {
+            return CurrentPage < TotalPages;
+        }
+
+        private ICommand _showNotificationsCommand;
+        public ICommand ShowNotificationsCommand
+        {
+            get
+            {
+                if (_showNotificationsCommand == null)
+                {
+                    _showNotificationsCommand = new RelayCommand(_ => {
+                        string msg = string.Join("\n\n", Notifications);
+                        System.Windows.MessageBox.Show(msg, "Thông báo hệ thống", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Information);
+                    });
+                }
+                return _showNotificationsCommand;
+            }
+        }
+
         private void BuildNotifications(AppDbContext db)
         {
             Notifications.Clear();
 
-            var lowSlotTours = db.Tours.Where(t => t.IsActive && t.AvailableSlots <= 5).Take(5).ToList();
+            if (SessionService.CurrentStaff != null)
+            {
+                var staffId = SessionService.CurrentStaff.StaffId;
+                var today = DateTime.Today;
+
+                
+                var myBookingsToday = db.Bookings
+                    .Include(b => b.Tour)
+                    .Where(b => b.StaffId == staffId && b.BookingDate >= today)
+                    .OrderByDescending(b => b.BookingDate)
+                    .Take(5)
+                    .ToList();
+
+                foreach (var booking in myBookingsToday)
+                {
+                    string statusText = booking.Status == BookingStatus.Paid ? "thành công" : "đang xử lý";
+                    if (booking.Status == BookingStatus.Cancelled) statusText = "đã hủy";
+                    Notifications.Add($"🎉 Đặt chỗ {statusText}: Đơn {booking.BookingCode} - Tour {booking.Tour?.TourCode} lúc {booking.BookingDate:HH:mm}");
+                }
+            }
+
+            
+            var lowSlotTours = db.Tours.Where(t => t.IsActive && t.AvailableSlots <= 5 && t.AvailableSlots > 0).Take(3).ToList();
             foreach (var tour in lowSlotTours)
             {
-                Notifications.Add(tour.TourCode + " chi con " + tour.AvailableSlots + " cho.");
+                Notifications.Add($"⚠️ Tour {tour.TourCode} chỉ còn {tour.AvailableSlots} chỗ trống.");
             }
 
             if (Notifications.Count == 0)
             {
-                Notifications.Add("He thong dang hoat dong binh thuong.");
+                Notifications.Add("Hệ thống hoạt động bình thường. Không có thông báo mới.");
             }
         }
 

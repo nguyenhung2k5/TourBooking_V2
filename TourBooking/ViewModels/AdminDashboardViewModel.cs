@@ -67,6 +67,9 @@ namespace TourBooking.ViewModels
         private ObservableCollection<Booking> _recentBookings;
         public ObservableCollection<Booking> RecentBookings { get => _recentBookings; set { _recentBookings = value; OnPropertyChanged(); } }
 
+        private ObservableCollection<string> _notifications;
+        public ObservableCollection<string> Notifications { get => _notifications; set { _notifications = value; OnPropertyChanged(); } }
+
         public ICommand ExportReportCommand { get; }
         public ICommand CreateTourCommand { get; }
         public ICommand QuickAddTourCommand { get; }
@@ -140,15 +143,51 @@ namespace TourBooking.ViewModels
             {
                 using (var context = new AppDbContext())
                 {
-                    var allBookings = context.Bookings.Include(b => b.Customer).Include(b => b.Tour).ToList();
+                    var allBookings = context.Bookings.Include(b => b.Customer).Include(b => b.Tour).Include(b => b.Staff).ToList();
                     TotalBookings = allBookings.Count;
                     TotalRevenue = allBookings.Where(b => b.Status == BookingStatus.Paid).Sum(b => b.TotalAmount);
+
+                    
+                    PendingBookingsCount = allBookings.Count(b => b.Status == BookingStatus.Pending);
+                    PaidBookingsCount = allBookings.Count(b => b.Status == BookingStatus.Paid);
+                    CancelledBookingsCount = allBookings.Count(b => b.Status == BookingStatus.Cancelled || b.Status == BookingStatus.Refunded);
 
                     var allTours = context.Tours.ToList();
                     ActiveTours = allTours.Count(t => t.IsActive);
 
                     var recent = allBookings.OrderByDescending(b => b.BookingDate).Take(5).ToList();
                     RecentBookings = new ObservableCollection<Booking>(recent);
+
+                   
+                    Notifications = new ObservableCollection<string>();
+                    var today = DateTime.Today;
+
+                    
+                    var todayBookings = allBookings
+                        .Where(b => b.BookingDate >= today)
+                        .OrderByDescending(b => b.BookingDate)
+                        .ToList();
+
+                    foreach (var booking in todayBookings)
+                    {
+                        var staffName = booking.Staff != null ? booking.Staff.FullName : "Hệ thống";
+                        Notifications.Add($"[Nhân viên: {staffName}] Đặt chỗ thành công: Đơn {booking.BookingCode} - Tour {booking.Tour?.TourCode} lúc {booking.BookingDate:HH:mm}");
+                    }
+
+                    
+                    var lowSlotsTours = allTours
+                        .Where(t => t.IsActive && t.AvailableSlots >= 0 && t.AvailableSlots <= 2)
+                        .ToList();
+
+                    foreach (var tour in lowSlotsTours)
+                    {
+                        Notifications.Add($"⚠️ Sắp hết chỗ: Tour {tour.TourCode} ({tour.TourName}) chỉ còn {tour.AvailableSlots} chỗ trống!");
+                    }
+
+                    if (Notifications.Count == 0)
+                    {
+                        Notifications.Add("Không có thông báo mới nào hôm nay.");
+                    }
                 }
             }
             catch (Exception ex)

@@ -250,14 +250,14 @@ namespace TourBooking.ViewModels
                 return;
             }
 
-            // QR payment popup check if Transfer is selected
+            
             if (SelectedPaymentMethod == PaymentMethod.Transfer)
             {
                 string tempBookingCode = "BK" + DateTime.Now.ToString("yyyyMMddHHmmss");
                 var qrDialog = new TourBooking.Views.Dialogs.QrPaymentDialog(tempBookingCode, TotalAmount);
                 if (qrDialog.ShowDialog() != true)
                 {
-                    return; // Payment not confirmed
+                    return; 
                 }
             }
 
@@ -348,7 +348,7 @@ namespace TourBooking.ViewModels
                     SuccessMessage = "Tao booking thanh cong: " + booking.BookingCode;
                     MessageBox.Show("Tạo booking thành công: " + booking.BookingCode, "Thành công", MessageBoxButton.OK, MessageBoxImage.Information);
 
-                    // Ask to print invoice
+                    
                     if (MessageBox.Show("Bạn có muốn xuất hóa đơn PDF không?", "In hóa đơn", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                     {
                         var saveFileDialog = new Microsoft.Win32.SaveFileDialog

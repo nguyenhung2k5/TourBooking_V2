@@ -76,7 +76,7 @@ namespace TourBooking.ViewModels
             LoadDataFromDatabase();
         }
 
-        private void LoadDataFromDatabase()
+        public void LoadDataFromDatabase()
         {
             try
             {
@@ -92,7 +92,7 @@ namespace TourBooking.ViewModels
                     TotalBookingsCount = bookingsList.Count;
                     TotalRevenueSum = bookingsList.Where(b => b.Status == BookingStatus.Paid).Sum(b => b.TotalAmount);
 
-                    // Lựa chọn nhân viên chỉ hiển thị nhân viên (Role == UserRole.Staff)
+                    
                     var staffNames = context.Staffs
                         .Where(s => s.Role == UserRole.Staff)
                         .Select(s => s.FullName)

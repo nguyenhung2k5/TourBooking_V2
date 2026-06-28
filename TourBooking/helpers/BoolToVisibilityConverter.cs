@@ -15,7 +15,7 @@ namespace TourBooking.Helpers
                 flag = val;
             }
 
-            // Check if we want to invert the boolean value
+            
             bool invert = false;
             if (parameter != null)
             {

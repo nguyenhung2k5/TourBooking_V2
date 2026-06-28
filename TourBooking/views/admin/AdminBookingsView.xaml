@@ -4,6 +4,7 @@
               xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
               xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
               xmlns:helpers="clr-namespace:TourBooking.Helpers"
+              xmlns:models="clr-namespace:TourBooking.Models"
               mc:Ignorable="d" 
               d:DesignHeight="900" d:DesignWidth="1200"
               Background="#F4F6F9"
@@ -13,6 +14,10 @@
         <helpers:NumberFormatConverter x:Key="MoneyConverter"/>
         <helpers:StatusToTextConverter x:Key="StatusToTextConverter"/>
         <helpers:StatusToColorConverter x:Key="StatusToColorConverter"/>
+
+        <Style TargetType="TextBlock" x:Key="CenterText">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
 
         <Style TargetType="Border" x:Key="CardBorder">
             <Setter Property="Background" Value="White"/>
@@ -33,7 +38,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!-- TẦNG 1: TIÊU ĐỀ TRANG & NÚT XUẤT CSV -->
+        
         <Grid Grid.Row="0" Margin="10,0,10,15">
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left">
                 <TextBlock Text="Quản lý Đơn hàng Tổng" FontSize="24" FontWeight="Bold" Foreground="#101828"/>
@@ -51,7 +56,7 @@
             </StackPanel>
         </Grid>
 
-        <!-- TẦNG 2: KHỐI THỐNG KÊ KPI & KHỐI ĐIỀU KIỆN LỌC DỮ LIỆU -->
+        
         <Grid Grid.Row="1" Margin="0,0,0,10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1.5*"/>
@@ -59,7 +64,7 @@
                 <ColumnDefinition Width="6*"/>
             </Grid.ColumnDefinitions>
 
-            <!-- KPI 1: Tổng đơn hàng -->
+            
             <Border Grid.Column="0" Style="{StaticResource CardBorder}" Padding="15">
                 <StackPanel VerticalAlignment="Center">
                     <TextBlock Text="TỔNG ĐƠN HÀNG" Foreground="#667085" FontSize="12" FontWeight="SemiBold"/>
@@ -67,7 +72,7 @@
                 </StackPanel>
             </Border>
 
-            <!-- KPI 2: Doanh thu -->
+           
             <Border Grid.Column="1" Style="{StaticResource CardBorder}" Padding="15">
                 <StackPanel VerticalAlignment="Center">
                     <TextBlock Text="DOANH THU" Foreground="#667085" FontSize="12" FontWeight="SemiBold"/>
@@ -75,7 +80,7 @@
                 </StackPanel>
             </Border>
 
-            <!-- KHỐI THANH BỘ LỌC (SEARCH BAR) -->
+            
             <Border Grid.Column="2" Style="{StaticResource CardBorder}" Padding="15">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -88,7 +93,7 @@
                         <ColumnDefinition Width="1.5*"/>
                     </Grid.ColumnDefinitions>
 
-                    <!-- Hàng FILTER 1 -->
+                    
                     <StackPanel Grid.Row="0" Grid.Column="0" Margin="5,0,10,10">
                         <TextBlock Text="Tìm kiếm đơn hàng" FontSize="13" FontWeight="SemiBold" Foreground="#344054" Margin="0,0,0,6"/>
                         <TextBox Text="{Binding SearchQuery, UpdateSourceTrigger=PropertyChanged}" Height="35" VerticalContentAlignment="Center" Padding="8,0" BorderBrush="#D0D5DD" Background="#F9FAFB">
@@ -110,7 +115,7 @@
                         <DatePicker Language="vi-VN" SelectedDate="{Binding SelectedDate}" SelectedDateFormat="Short" Height="35" VerticalContentAlignment="Center"/>
                     </StackPanel>
 
-                    <!-- Hàng FILTER 2 -->
+                    
                     <StackPanel Grid.Row="1" Grid.Column="0" Margin="5,0,10,0">
                         <TextBlock Text="Nhân viên" FontSize="13" FontWeight="SemiBold" Foreground="#344054" Margin="0,0,0,6"/>
                         <ComboBox ItemsSource="{Binding StaffOptions}" SelectedItem="{Binding SelectedStaff}" Height="35" VerticalContentAlignment="Center" Background="White"/>
@@ -127,10 +132,16 @@
             </Border>
         </Grid>
 
-        <!-- TẦNG 3: BẢNG HIỂN THỊ DANH SÁCH ĐƠN HÀNG CHÍNH -->
+        
         <Border Grid.Row="2" Style="{StaticResource CardBorder}" Padding="15">
             <DataGrid ItemsSource="{Binding FilteredBookings}" Background="Transparent" BorderThickness="0" AutoGenerateColumns="False" 
                       CanUserAddRows="False" RowHeaderWidth="0" CanUserResizeRows="False" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="#EAECF0" HeadersVisibility="Column" RowHeight="60">
+                <DataGrid.Resources>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="VerticalAlignment" Value="Center"/>
+                    </Style>
+                </DataGrid.Resources>
+
                 <DataGrid.ColumnHeaderStyle>
                     <Style TargetType="DataGridColumnHeader">
                         <Setter Property="Background" Value="#F8F9FA"/>
@@ -143,9 +154,9 @@
                 </DataGrid.ColumnHeaderStyle>
 
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="MÃ ĐƠN HÀNG" Binding="{Binding BookingCode}" Width="1.2*" FontWeight="Bold" Foreground="#0A1942"/>
+                    <DataGridTextColumn Header="MÃ ĐƠN HÀNG" Binding="{Binding BookingCode}" Width="1.2*" FontWeight="Bold" Foreground="#0A1942" ElementStyle="{StaticResource CenterText}"/>
 
-                    <DataGridTextColumn Header="NGÀY ĐẶT" Binding="{Binding BookingDate, StringFormat=\{0:dd/MM/yyyy HH:mm\}}" Width="1.5*"/>
+                    <DataGridTextColumn Header="NGÀY ĐẶT" Binding="{Binding BookingDate, StringFormat=\{0:dd/MM/yyyy HH:mm\}}" Width="1.5*" ElementStyle="{StaticResource CenterText}"/>
 
                     <DataGridTemplateColumn Header="KHÁCH HÀNG" Width="2*">
                         <DataGridTemplateColumn.CellTemplate>
@@ -167,14 +178,20 @@
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
 
-                    <DataGridTextColumn Header="TỔNG TIỀN" Binding="{Binding TotalAmount, Converter={StaticResource MoneyConverter}}" Width="1.3*" FontWeight="Bold" Foreground="#101828"/>
+                    <DataGridTextColumn Header="TỔNG TIỀN" Binding="{Binding TotalAmount, Converter={StaticResource MoneyConverter}}" Width="1.3*" FontWeight="Bold" Foreground="#101828" ElementStyle="{StaticResource CenterText}"/>
 
-                    <DataGridTemplateColumn Header="TRẠNG THÁI" Width="1.4*">
+                    <DataGridTemplateColumn Header="TRẠNG THÁI" Width="1.7*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Border CornerRadius="12" Padding="10,6" HorizontalAlignment="Left" VerticalAlignment="Center" Background="#F2F4F7">
-                                    <TextBlock Text="{Binding Status, Converter={StaticResource StatusToTextConverter}}" FontSize="11" FontWeight="Bold" HorizontalAlignment="Center" Foreground="{Binding Status, Converter={StaticResource StatusToColorConverter}}"/>
-                                </Border>
+                                <ComboBox SelectedValue="{Binding Status, Mode=OneWay}"
+                                          SelectedValuePath="Tag"
+                                          Height="32"
+                                          VerticalAlignment="Center"
+                                          SelectionChanged="StatusComboBox_SelectionChanged">
+                                    <ComboBoxItem Content="Đã thanh toán" Tag="{x:Static models:BookingStatus.Paid}"/>
+                                    <ComboBoxItem Content="Đã hủy" Tag="{x:Static models:BookingStatus.Cancelled}"/>
+                                    <ComboBoxItem Content="Đã hoàn tiền" Tag="{x:Static models:BookingStatus.Refunded}"/>
+                                </ComboBox>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>

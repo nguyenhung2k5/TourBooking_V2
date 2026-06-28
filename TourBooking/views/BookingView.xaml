@@ -113,7 +113,7 @@ RenderOptions.BitmapScalingMode="HighQuality"
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <!-- SIDEBAR LEFT -->
+        
         <Border Grid.Column="0" Background="#F8F9FA" BorderBrush="#EAECF0" BorderThickness="0,0,1,0">
             <Grid>
                 <Grid.RowDefinitions>
@@ -189,7 +189,7 @@ RenderOptions.BitmapScalingMode="HighQuality"
 
                 <ScrollViewer Grid.Column="0" VerticalScrollBarVisibility="Auto">
                     <StackPanel>
-                        <!-- Tour Selection Box -->
+                        
                         <Border Style="{StaticResource CardBorder}">
                             <StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0,0,0,15">
@@ -223,7 +223,7 @@ RenderOptions.BitmapScalingMode="HighQuality"
                             </StackPanel>
                         </Border>
 
-                        <!-- Customer Details Box -->
+                        
                         <Border Style="{StaticResource CardBorder}">
                             <StackPanel>
                                 <Grid Margin="0,0,0,15">
@@ -241,7 +241,7 @@ RenderOptions.BitmapScalingMode="HighQuality"
                                     <TextBox Style="{StaticResource FormTextBox}" x:Name="txtCustomerName" Text="{Binding CustomerName, UpdateSourceTrigger=PropertyChanged}"/>
                                 </StackPanel>
 
-                                <UniformGrid Columns="2">
+                                <UniformGrid Columns="3">
                                     <StackPanel Margin="5,8">
                                         <StackPanel Orientation="Horizontal" Margin="0,0,0,6">
                                             <TextBlock Text="Số điện thoại" FontSize="12" FontWeight="SemiBold" Foreground="#344054"/>
@@ -252,6 +252,10 @@ RenderOptions.BitmapScalingMode="HighQuality"
                                     <StackPanel Margin="5,8">
                                         <TextBlock Text="Email" FontSize="12" FontWeight="SemiBold" Foreground="#344054" Margin="0,0,0,6"/>
                                         <TextBox Style="{StaticResource FormTextBox}" x:Name="txtCustomerEmail" Text="{Binding CustomerEmail, UpdateSourceTrigger=PropertyChanged}"/>
+                                    </StackPanel>
+                                    <StackPanel Margin="5,8">
+                                        <TextBlock Text="Số CCCD/Hộ chiếu" FontSize="12" FontWeight="SemiBold" Foreground="#344054" Margin="0,0,0,6"/>
+                                        <TextBox Style="{StaticResource FormTextBox}" x:Name="txtCustomerNationalId" Text="{Binding CustomerNationalId, UpdateSourceTrigger=PropertyChanged}"/>
                                     </StackPanel>
                                 </UniformGrid>
                             </StackPanel>
@@ -378,7 +382,7 @@ RenderOptions.BitmapScalingMode="HighQuality"
                 </Border>
             </Grid>
 
-            <!-- Sticky Footer -->
+          
             <Border Grid.Row="2" Background="White" BorderBrush="#EAECF0" BorderThickness="0,1,0,0" Padding="25,15">
                 <Grid>
                     <StackPanel VerticalAlignment="Center">

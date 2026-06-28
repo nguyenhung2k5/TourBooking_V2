@@ -17,7 +17,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <!-- HEADER -->
+        
         <Border Grid.Row="0" Background="#1D3D8F" Padding="20,15">
             <Grid>
                 <StackPanel VerticalAlignment="Center">
@@ -27,10 +27,10 @@
             </Grid>
         </Border>
 
-        <!-- CONTENT BODY -->
+        
         <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Padding="25">
             <StackPanel>
-                <!-- CARD 1: OVERVIEW -->
+               
                 <Border Background="White" CornerRadius="8" Padding="20" Margin="0,0,0,15">
                     <Border.Effect>
                         <DropShadowEffect BlurRadius="10" ShadowDepth="0" Color="#E2E8F0" Opacity="0.5"/>
@@ -63,7 +63,7 @@
                     </Grid>
                 </Border>
 
-                <!-- CARD 2: DATES & SLOTS -->
+                
                 <Border Background="White" CornerRadius="8" Padding="20" Margin="0,0,0,15">
                     <Border.Effect>
                         <DropShadowEffect BlurRadius="10" ShadowDepth="0" Color="#E2E8F0" Opacity="0.5"/>
@@ -105,7 +105,7 @@
                     </Grid>
                 </Border>
 
-                <!-- CARD 3: PRICES & STATUS -->
+                
                 <Border Background="White" CornerRadius="8" Padding="20">
                     <Border.Effect>
                         <DropShadowEffect BlurRadius="10" ShadowDepth="0" Color="#E2E8F0" Opacity="0.5"/>
@@ -139,7 +139,7 @@
             </StackPanel>
         </ScrollViewer>
 
-        <!-- FOOTER -->
+       
         <Border Grid.Row="2" Background="White" BorderBrush="#EAECF0" BorderThickness="0,1,0,0" Padding="20,15">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                 <Button x:Name="btnBookNow" Content="🛒 Đặt tour này ngay" Width="150" Height="40" Background="#12B76A" Foreground="White" FontWeight="Bold" BorderThickness="0" Cursor="Hand" Margin="0,0,10,0" Click="BtnBookNow_Click">

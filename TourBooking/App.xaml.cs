@@ -1,7 +1,8 @@
 using System;
+using System.IO;
 using System.Linq;
 using System.Windows;
-using TourBooking.Data; // Khai báo đường dẫn đến AppDbContext
+using TourBooking.Data;
 using TourBooking.ViewModels;
 using TourBooking.Views;
 using TourBooking.Views.Admin;
@@ -14,11 +15,22 @@ namespace TourBooking
         {
             this.DispatcherUnhandledException += (s, args) =>
             {
-                System.IO.File.WriteAllText(@"c:\IT\C#\TourBooking_V2\global_error.log", args.Exception.ToString());
+                try
+                {
+                    string logPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "global_error.log");
+                    File.WriteAllText(logPath, args.Exception.ToString());
+                }
+                catch { }
             };
+
             AppDomain.CurrentDomain.UnhandledException += (s, args) =>
             {
-                System.IO.File.WriteAllText(@"c:\IT\C#\TourBooking_V2\global_error.log", args.ExceptionObject.ToString());
+                try
+                {
+                    string logPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "global_error.log");
+                    File.WriteAllText(logPath, args.ExceptionObject.ToString());
+                }
+                catch { }
             };
         }
 
@@ -31,7 +43,12 @@ namespace TourBooking
             }
             catch (Exception ex)
             {
-                System.IO.File.WriteAllText(@"c:\IT\C#\TourBooking_V2\crash.log", ex.ToString());
+                try
+                {
+                    string logPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "crash.log");
+                    File.WriteAllText(logPath, ex.ToString());
+                }
+                catch { }
             }
         }
     }

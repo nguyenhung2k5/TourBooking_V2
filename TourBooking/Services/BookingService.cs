@@ -58,7 +58,7 @@ namespace TourBooking.Services
                 };
 
                 db.Bookings.Add(booking);
-                db.SaveChanges(); // Save to generate BookingId
+                db.SaveChanges(); 
 
                 if (adultQty > 0)
                 {
@@ -93,7 +93,7 @@ namespace TourBooking.Services
                 tour.AvailableSlots -= totalPassengers;
                 db.SaveChanges();
 
-                // Reload navigation properties
+                
                 return db.Bookings
                     .Include(b => b.Tour)
                     .Include(b => b.Customer)

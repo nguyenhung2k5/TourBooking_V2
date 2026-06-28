@@ -17,6 +17,7 @@ namespace TourBooking.ViewModels
     {
         public double Height { get; set; }
         public string Color { get; set; }
+        public string Label { get; set; }
     }
 
     public class AdminCustomerViewModel : BaseViewModel
@@ -107,7 +108,7 @@ namespace TourBooking.ViewModels
                     _allCustomers = new ObservableCollection<Customer>(customerList);
                     FilteredCustomers = new ObservableCollection<Customer>(customerList);
 
-                    // Load Recent Activities
+                    
                     var recentBookings = allBookings.OrderByDescending(b => b.BookingDate).Take(3).ToList();
                     RecentActivities.Clear();
                     foreach (var b in recentBookings)
@@ -121,31 +122,34 @@ namespace TourBooking.ViewModels
                         RecentActivities.Add($"• {b.Customer?.FullName} vừa đặt {b.Tour?.TourName} ({timeAgo})");
                     }
 
-                    // Load Chart Data (Customer growth per month for the last 10 months)
+                    
                     MonthlyChartData.Clear();
                     var groupedByMonth = customerList.GroupBy(c => new { c.CreatedAt.Year, c.CreatedAt.Month })
                         .ToDictionary(g => g.Key, g => g.Count());
                     
                     var currentDate = DateTime.Now;
                     var monthsData = new List<int>();
+                    var monthsLabels = new List<string>();
                     for (int i = 9; i >= 0; i--)
                     {
                         var d = currentDate.AddMonths(-i);
                         var key = new { Year = d.Year, Month = d.Month };
                         monthsData.Add(groupedByMonth.ContainsKey(key) ? groupedByMonth[key] : 0);
+                        monthsLabels.Add($"T{d.Month}/{d.Year.ToString().Substring(2)}");
                     }
                     
                     int maxCount = monthsData.Max();
-                    if (maxCount == 0) maxCount = 1; // Prevent division by zero
+                    if (maxCount == 0) maxCount = 1; 
                     
                     for (int i = 0; i < monthsData.Count; i++)
                     {
-                        double height = ((double)monthsData[i] / maxCount) * 150;
-                        if (height < 10) height = 10; // Minimum height for visibility
+                        double height = ((double)monthsData[i] / maxCount) * 130;
+                        if (height < 10) height = 10; 
                         MonthlyChartData.Add(new ChartBarInfo 
                         { 
                             Height = height, 
-                            Color = (i == monthsData.Count - 1) ? "#1D3D8F" : "#EAECF0" 
+                            Color = (i == monthsData.Count - 1) ? "#1D3D8F" : "#EAECF0",
+                            Label = monthsLabels[i]
                         });
                     }
                 }

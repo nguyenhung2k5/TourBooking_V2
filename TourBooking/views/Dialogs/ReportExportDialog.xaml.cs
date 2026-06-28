@@ -14,6 +14,12 @@ namespace TourBooking.Views.Dialogs
         {
             InitializeComponent();
             _reportService = new ReportService();
+            
+            // Nếu không phải Admin, ẩn báo cáo Quản lý Nhân sự
+            if (!SessionService.IsAdmin)
+            {
+                rbStaff.Visibility = Visibility.Collapsed;
+            }
         }
 
         private void BtnExport_Click(object sender, RoutedEventArgs e)
